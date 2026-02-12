@@ -1,6 +1,4 @@
-// ===========================
 // DOM ELEMENTS CENTRALIZATION
-// ===========================
 const elements = {
     theme: {
         toggle: document.getElementById('theme-toggle'),
@@ -30,9 +28,7 @@ const elements = {
     accordionItems: document.querySelectorAll('.accordion-item')
 };
 
-// ===========================
 // THEME MANAGER
-// ===========================
 const ThemeManager = {
     init() {
         if (!elements.theme.toggle) return;
@@ -76,9 +72,7 @@ const ThemeManager = {
     }
 };
 
-// ===========================
-// SEARCH OVERLAY MANAGER
-// ===========================
+// SEARCH OVERLAY
 const SearchManager = {
     init() {
         if (!elements.search.overlay) return;
@@ -154,9 +148,7 @@ const SearchManager = {
     }
 };
 
-// ===========================
-// SLIDER MANAGER
-// ===========================
+// SLIDER
 const SliderManager = {
     currentSlide: 0,
     totalSlides: 0,
@@ -281,9 +273,7 @@ const SliderManager = {
     }
 };
 
-// ===========================
-// COUNTER ANIMATION MANAGER
-// ===========================
+// COUNTER ANIMATION
 const CounterManager = {
     init() {
         if (!elements.counters.length) return;
@@ -328,9 +318,7 @@ const CounterManager = {
     }
 };
 
-// ===========================
-// ACCORDION MANAGER
-// ===========================
+// ACCORDION
 const AccordionManager = {
     init() {
         if (!elements.accordionItems.length) return;
@@ -375,9 +363,7 @@ const AccordionManager = {
     }
 };
 
-// ===========================
-// POSTS MANAGER
-// ===========================
+// POSTS
 const PostsManager = {
     postsLoaded: false,
 
@@ -469,9 +455,7 @@ const PostsManager = {
     }
 };
 
-// ===========================
-// FORM VALIDATION MANAGER
-// ===========================
+// FORM VALIDATION
 const FormManager = {
     fields: {
         name: {
@@ -608,9 +592,7 @@ const FormManager = {
     }
 };
 
-// ===========================
 // INITIALIZATION
-// ===========================
 document.addEventListener('DOMContentLoaded', () => {
     ThemeManager.init();
     SearchManager.init();

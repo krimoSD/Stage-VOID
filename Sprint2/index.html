@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <!-- Meta Charset & Viewport -->
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>VOID Maroc : Agence Digitale #1 Casablanca | React, Drupal, Mobile & IA</title>
+        <meta name="description" content="VOID, agence digitale spécialisée en transformation bancaire, React, Drupal et applications mobiles. Expertise UX design et DevOps pour institutions africaines.">
+        <meta name="keywords" content="agence digitale, Casablanca, Drupal, React, transformation bancaire, développement web, UX design">
+        <meta name="author" content="VOID Maroc">
+        <meta name="robots" content="index, follow">
+        <meta name="theme-color" content="#ffffff">
+        <link rel="canonical" href="https://void.fr">
+        <meta property="og:type" content="website">
+        <meta property="og:url" content="https://void.fr">
+        <meta property="og:title" content="VOID Maroc : Agence Digitale #1 Casablanca">
+        <meta property="og:description" content="Transformation digitale expert pour banques, React, Drupal et apps mobiles.">
+        <meta property="og:image" content="https://void.fr/images/og-image.jpg">
+        <meta property="og:image:alt" content="VOID Agence Digitale Casablanca">
+        <meta property="og:site_name" content="VOID">
+        <meta property="og:locale" content="fr_FR">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:url" content="https://void.fr">
+        <meta name="twitter:title" content="VOID Maroc : Agence Digitale">
+        <meta name="twitter:description" content="Transformation digitale expert pour institutions africaines.">
+        <meta name="twitter:image" content="https://void.fr/images/twitter-image.jpg">
+        <link rel="icon" href="/images/icon.png" type="image/png" sizes="32x32">
+        <link rel="preconnect" href="https://cdn.tailwindcss.com" crossorigin>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script>
+            tailwind.config = {
+                darkMode: 'class'
+            }
+        </script>
+    </head>
+    <body class="overflow-x-hidden transition-colors duration-300 bg-white dark:bg-gray-900">
+        <!-- Header -->
+        <header class="bg-white dark:bg-gray-800 shadow-sm transition-colors duration-300">
+            <div class="container mx-auto px-4 sm:px-6 py-4 sm:py-6">
+                <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+                    <!-- Logo -->
+                    <div class="text-center sm:text-left">
+                        <h1 class="text-xl sm:text-2xl font-bold text-red-600">VOID</h1>
+                        <p class="text-xs sm:text-sm text-gray-500 dark:text-gray-400">Agence Digitale Casablanca Expert UX, Drupal & Transformation Bancaire</p>
+                    </div>
+                    <!-- Navigation -->
+                    <nav class="flex items-center gap-4 sm:gap-8 lg:gap-12" aria-label="Navigation principale">
+                        <a href="#hero" class="text-sm sm:text-base text-gray-800 dark:text-gray-200 hover:text-red-500 dark:hover:text-red-400 font-medium transition-colors">HOME</a>
+                        <a href="#about" class="text-sm sm:text-base text-gray-800 dark:text-gray-200 hover:text-red-500 dark:hover:text-red-400 font-medium transition-colors">USER</a>
+                        <a href="#contact" class="text-sm sm:text-base text-gray-800 dark:text-gray-200 hover:text-red-500 dark:hover:text-red-400 font-medium transition-colors">CONTACT US</a>
+                        <button type="button" aria-label="Ouvrir la recherche" class="text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 transition-colors">
+                            <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                            </svg>
+                        </button>
+                        <!-- Dark Mode -->
+                        <button id="theme-toggle" type="button" aria-label="Activer ou désactiver le mode sombre" class="p-2 rounded-lg bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors">
+                            <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-gray-800 dark:text-gray-200" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+                            </svg>
+                            <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-gray-800 dark:text-gray-200" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path>
+                            </svg>
+                        </button>
+                    </nav>
+                </div>
+            </div>
+        </header>
+        <main id="main-content">
+        <!-- section -->
+        <section id="hero" class="relative px-4 sm:px-6 py-12 sm:py-16 lg:py-20 w-full overflow-hidden" aria-label="Principales réalisations clients">
+            <video 
+                autoplay 
+                loop 
+                muted 
+                playsinline
+                preload="metadata"
+                aria-hidden="true"
+                class="absolute inset-0 w-full h-full object-cover z-0"
+                >
+                <source src="images/bg_void_0.mp4" type="video/mp4">
+            </video>
+            <div class="absolute inset-0 bg-black/20 dark:bg-black/40 z-0"></div>
+            <div class="relative z-10 overflow-hidden max-w-4xl mx-auto">
+                <!-- Slides Container -->
+                <div id="slidesContainer" class="flex transition-transform duration-500 ease-in-out" role="group" aria-roledescription="carousel" aria-label="Carrousel de références clients">
+                    <!-- Slide 1 -->
+                    <div class="min-w-full">
+                        <div class="bg-white dark:bg-gray-700 rounded-lg shadow-lg p-8 sm:p-12 lg:p-20 text-center transition-colors duration-300">
+                            <h2 class="text-2xl sm:text-3xl lg:text-4xl font-serif mb-4 sm:mb-6 leading-relaxed text-gray-900 dark:text-white">
+                                RMA Assurance — Application mobile - React Native
+                            </h2>
+                            <p class="text-sm sm:text-base text-gray-500 dark:text-gray-400 mb-6 sm:mb-8">MyRMA • 2025 - Aujourd'hui</p>
+                            <button class="bg-red-600 hover:bg-red-700 dark:bg-red-500 dark:hover:bg-red-400 text-white font-bold px-6 sm:px-8 py-2 sm:py-3 rounded text-sm sm:text-base transition-colors">
+                            Voir la réalisation
+                            </button>
+                        </div>
+                    </div>
+                    <!-- Slide 2 -->
+                    <div class="min-w-full">
+                        <div class="bg-white dark:bg-gray-700 rounded-lg shadow-lg p-8 sm:p-12 lg:p-20 text-center transition-colors duration-300">
+                            <h2 class="text-2xl sm:text-3xl lg:text-4xl font-serif mb-4 sm:mb-6 leading-relaxed text-gray-900 dark:text-white">
+                                Attijariwafa bank — Plateforme entreprise — Hub digital & Drupal
+                            </h2>
+                            <p class="text-sm sm:text-base text-gray-500 dark:text-gray-400 mb-6 sm:mb-8">Hub Digital Attijariwafa bank • 2018 - Aujourd'hui</p>
+                            <button class="bg-red-600 hover:bg-red-700 dark:bg-red-500 dark:hover:bg-red-400 text-white font-bold px-6 sm:px-8 py-2 sm:py-3 rounded text-sm sm:text-base transition-colors">
+                            Voir la réalisation
+                            </button>
+                        </div>
+                    </div>
+                    <!-- Slide 3 -->
+                    <div class="min-w-full">
+                        <div class="bg-white dark:bg-gray-700 rounded-lg shadow-lg p-8 sm:p-12 lg:p-20 text-center transition-colors duration-300">
+                            <h2 class="text-2xl sm:text-3xl lg:text-4xl font-serif mb-4 sm:mb-6 leading-relaxed text-gray-900 dark:text-white">
+                                Wafasalaf — Plateforme web — Drupal & Performance & SEO
+                            </h2>
+                            <p class="text-sm sm:text-base text-gray-500 dark:text-gray-400 mb-6 sm:mb-8">Wafasalaf • 2018 - Aujourd'hui</p>
+                            <button class="bg-red-600 hover:bg-red-700 dark:bg-red-500 dark:hover:bg-red-400 text-white font-bold px-6 sm:px-8 py-2 sm:py-3 rounded text-sm sm:text-base transition-colors">
+                            Voir la réalisation
+                            </button>
+                        </div>
+                    </div>
+                    <!-- Slide 4 -->
+                    <div class="min-w-full">
+                        <div class="bg-white dark:bg-gray-700 rounded-lg shadow-lg p-8 sm:p-12 lg:p-20 text-center transition-colors duration-300">
+                            <h2 class="text-2xl sm:text-3xl lg:text-4xl font-serif mb-4 sm:mb-6 leading-relaxed text-gray-900 dark:text-white">
+                                Crédit Agricole du Maroc — Plateforme entreprise — Drupal
+                            </h2>
+                            <p class="text-sm sm:text-base text-gray-500 dark:text-gray-400 mb-6 sm:mb-8">Crédit Agricole du Maroc • 2020 - Aujourd'hui</p>
+                            <button class="bg-red-600 hover:bg-red-700 dark:bg-red-500 dark:hover:bg-red-400 text-white font-bold px-6 sm:px-8 py-2 sm:py-3 rounded text-sm sm:text-base transition-colors">
+                            Voir la réalisation
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <button id="prevBtn" type="button" aria-label="Afficher la réalisation précédente" class="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm p-3 sm:p-4 rounded-full shadow-2xl hover:bg-white dark:hover:bg-gray-700 hover:scale-110 transition-all duration-300 z-20 group">
+                    <svg class="w-6 h-6 sm:w-8 sm:h-8 text-gray-800 dark:text-white group-hover:text-red-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"></path>
+                    </svg>
+                </button>
+                <button id="nextBtn" type="button" aria-label="Afficher la réalisation suivante" class="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 bg-white/90 dark:bg-gray-800/90 backdrop-blur-sm p-3 sm:p-4 rounded-full shadow-2xl hover:bg-white dark:hover:bg-gray-700 hover:scale-110 transition-all duration-300 z-20 group">
+                    <svg class="w-6 h-6 sm:w-8 sm:h-8 text-gray-800 dark:text-white group-hover:text-red-500 transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                </button>
+            </div>
+            <div id="dotsContainer" class="relative z-10 flex justify-center gap-4 mt-8 sm:mt-12" aria-label="Indicateurs de carrousel">
+                <button class="dot w-10 h-10 sm:w-10 sm:h-10 rounded-full bg-red-500 dark:bg-red-600 transition-all duration-300 hover:scale-105" data-index="0" type="button" aria-label="Aller au slide 1" aria-pressed="true"></button>
+                <button class="dot w-10 h-10 sm:w-10 sm:h-10 rounded-full bg-white/70 dark:bg-gray-300/70 transition-all duration-300 hover:scale-105" data-index="1" type="button" aria-label="Aller au slide 2" aria-pressed="false"></button>
+                <button class="dot w-10 h-10 sm:w-10 sm:h-10 rounded-full bg-white/70 dark:bg-gray-300/70 transition-all duration-300 hover:scale-105" data-index="2" type="button" aria-label="Aller au slide 3" aria-pressed="false"></button>
+                <button class="dot w-10 h-10 sm:w-10 sm:h-10 rounded-full bg-white/70 dark:bg-gray-300/70 transition-all duration-300 hover:scale-105" data-index="3" type="button" aria-label="Aller au slide 4" aria-pressed="false"></button>
+            </div>
+        </section>
+        <!-- Animated Stats Section -->
+        <section class="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-red-500 to-red-600 dark:from-red-600 dark:to-red-700 transition-colors duration-300">
+            <div class="container mx-auto px-4 sm:px-6">
+                <div class="max-w-6xl mx-auto">
+                    <!-- Section Title -->
+                    <div class="text-center mb-12 sm:mb-16">
+                        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-serif italic text-white mb-4">Nos Réalisations en Chiffres</h2>
+                        <div class="w-24 h-1 bg-white mx-auto"></div>
+                    </div>
+                    <!-- Stats Grid -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12">
+                        <!-- Stat 1 -->
+                        <div class="text-center">
+                            <div class="mb-4">
+                                <svg class="w-12 h-12 sm:w-16 sm:h-16 mx-auto text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                                </svg>
+                            </div>
+                            <div class="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-2">
+                                <span class="counter" data-target="250">0</span>+
+                            </div>
+                            <p class="text-base sm:text-lg text-white/90 font-medium">Projets Réalisés</p>
+                        </div>
+                        <!-- Stat 2 -->
+                        <div class="text-center">
+                            <div class="mb-4">
+                                <svg class="w-12 h-12 sm:w-16 sm:h-16 mx-auto text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                                </svg>
+                            </div>
+                            <div class="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-2">
+                                <span class="counter" data-target="150">0</span>+
+                            </div>
+                            <p class="text-base sm:text-lg text-white/90 font-medium">Clients Satisfaits</p>
+                        </div>
+                        <!-- Stat 3 -->
+                        <div class="text-center">
+                            <div class="mb-4">
+                                <svg class="w-12 h-12 sm:w-16 sm:h-16 mx-auto text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                </svg>
+                            </div>
+                            <div class="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-2">
+                                <span class="counter" data-target="19">0</span>
+                            </div>
+                            <p class="text-base sm:text-lg text-white/90 font-medium">Années d'Expérience</p>
+                        </div>
+                        <!-- Stat 4 -->
+                        <div class="text-center">
+                            <div class="mb-4">
+                                <svg class="w-12 h-12 sm:w-16 sm:h-16 mx-auto text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z"></path>
+                                </svg>
+                            </div>
+                            <div class="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-2">
+                                <span class="counter" data-target="98">0</span>%
+                            </div>
+                            <p class="text-base sm:text-lg text-white/90 font-medium">Taux de Satisfaction</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Articles Section -->
+        <section id="articles" class="container mx-auto px-4 sm:px-6 py-12 sm:py-16 bg-white dark:bg-gray-900 transition-colors duration-300">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
+                <div data-articles-column="1">
+                    <h2 class="text-3xl sm:text-4xl font-serif italic text-red-500 dark:text-red-400 text-center mb-2">Articles 1</h2>
+                    <div class="w-16 h-1 bg-red-500 dark:bg-red-600 mx-auto mb-8 sm:mb-12"></div>
+                    <!-- Article 1 -->
+                    <div class="flex flex-col sm:flex-row gap-4 sm:gap-6 mb-6 sm:mb-8">
+                        <img src="images/drupal-framer.png" alt="Illustration Framer et Drupal CMS" loading="lazy" decoding="async" width="1280" height="850" class="w-full sm:w-48 h-auto sm:h-auto bg-gray-200 dark:bg-gray-700 flex-shrink-0 transition-colors duration-300">
+                        <div class="flex-1">
+                            <h3 class="text-lg sm:text-xl font-serif mb-2 text-gray-900 dark:text-white">Framer vs Drupal CMS : Comparaison Expert & Cas d'Usage</h3>
+                            <p class="text-xs sm:text-sm text-gray-500 dark:text-gray-400">February 11, 2026</p>
+                        </div>
+                    </div>
+                    <!-- Article 2 -->
+                    <div class="flex flex-col sm:flex-row gap-4 sm:gap-6 mb-6 sm:mb-8">
+                        <img src="images/drupal-cms-2-void.png" alt="Capture d'écran Drupal CMS 2.0" loading="lazy" decoding="async" width="1280" height="850" class="w-full sm:w-48 h-auto sm:h-auto bg-gray-200 dark:bg-gray-700 flex-shrink-0 transition-colors duration-300">
+                        <div class="flex-1">
+                            <h3 class="text-lg sm:text-xl font-serif mb-2 text-gray-900 dark:text-white">Drupal CMS 2.0 : Drupal Canvas, Visual Page Builder & Site Templates</h3>
+                            <p class="text-xs sm:text-sm text-gray-500 dark:text-gray-400">February 11, 2026</p>
+                        </div>
+                    </div>
+                </div>
+                <div data-articles-column="2">
+                    <h2 class="text-3xl sm:text-4xl font-serif italic text-red-500 dark:text-red-400 text-center mb-2">Articles 2</h2>
+                    <div class="w-16 h-1 bg-red-500 dark:bg-red-600 mx-auto mb-8 sm:mb-12"></div>
+                    <!-- Article 1 -->
+                    <div class="flex flex-col sm:flex-row gap-4 sm:gap-6 mb-6 sm:mb-8">
+                        <img src="images/mfa.png" alt="Illustration d'authentification multi-facteur" loading="lazy" decoding="async" width="800" height="450" class="w-full sm:w-48 h-auto sm:h-auto bg-gray-200 dark:bg-gray-700 flex-shrink-0 transition-colors duration-300">
+                        <div class="flex-1">
+                            <h3 class="text-lg sm:text-xl font-serif mb-2 text-gray-900 dark:text-white">MFA Authentification Double Facteur au Maroc : Guide DSI 2026</h3>
+                            <p class="text-xs sm:text-sm text-gray-500 dark:text-gray-400">February 11, 2026</p>
+                        </div>
+                    </div>
+                    <!-- Article 2 -->
+                    <div class="flex flex-col sm:flex-row gap-4 sm:gap-6 mb-6 sm:mb-8">
+                        <img src="images/way.jpg" alt="Visuel sur le futur du SEO et des assistants IA" loading="lazy" decoding="async" class="w-full sm:w-48 h-auto sm:h-auto bg-gray-200 dark:bg-gray-700 flex-shrink-0 transition-colors duration-300">
+                        <div class="flex-1">
+                            <h3 class="text-lg sm:text-xl font-serif mb-2 text-gray-900 dark:text-white">La Fin du SEO ? Le Nouveau Paradigme de la Recherche à l'Ère des Assistants IA</h3>
+                            <p class="text-xs sm:text-sm text-gray-500 dark:text-gray-400">February 11, 2026</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-10 text-center">
+                <button
+                    id="loadMorePosts"
+                    type="button"
+                    class="inline-flex items-center justify-center px-6 sm:px-8 py-3 rounded bg-gray-900 text-white text-sm sm:text-base font-semibold hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900 dark:bg-gray-100 dark:text-gray-900 dark:hover:bg-white dark:focus:ring-gray-100 transition-colors"
+                    aria-expanded="false"
+                >
+                    View All Posts
+                </button>
+            </div>
+        </section>
+        <!-- About Section -->
+        <section id="about" class="py-12 sm:py-16 transition-colors duration-300">
+            <div class="container mx-auto px-4 sm:px-6">
+                <div class="bg-[#F2F2F2] dark:bg-gray-800 transition-colors duration-300">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+                        <!-- Image -->
+                        <img class="bg-gray-300 dark:bg-gray-600 h-64 sm:h-80 lg:h-[600px] rounded order-2 lg:order-1 transition-colors duration-300" src="images/void-logo_0.jpg" alt="Équipe de l'agence digitale VOID" loading="lazy" decoding="async" width="1600" height="900" />
+                        <!-- Content -->
+                        <div class="space-y-4 sm:space-y-6 p-4 sm:p-6 lg:p-8 order-1 lg:order-2">
+                            <h2 class="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-serif italic leading-tight text-gray-900 dark:text-white">
+                                Agence digitale Indépendante : UX et transformation digitale
+                            </h2>
+                            <p class="text-sm sm:text-base text-gray-700 dark:text-gray-300 leading-relaxed">
+                                Depuis 2005, nous mettons en œuvre des solutions technologiques à haute valeur ajoutée, au service d'entreprises et institutions panafricaines et européennes, dans les secteurs de la Banque Assurance, la Santé, les télécoms, le retail et la culture.
+                            </p>
+                            <p class="text-sm sm:text-base text-gray-700 dark:text-gray-300 leading-relaxed">
+                                Notre agence digitale réunit UX designers, développeurs Drupal & React, et experts DevOps pour créer des architectures web performantes, évolutives et centrées sur l'utilisateur. 
+                            </p>
+                            <p class="text-sm sm:text-base text-gray-700 dark:text-gray-300 leading-relaxed">
+                                Axée sur la data et le résultat, nos équipes travaillent avec agilité pour répondre aux besoins métiers, sans cesse en évolution, de nos clients.
+                            </p>
+                            <button class="bg-red-600 hover:bg-red-700 dark:bg-red-500 dark:hover:bg-red-400 text-white font-bold px-6 sm:px-8 py-2 sm:py-3 rounded mt-4 text-sm sm:text-base transition-colors">
+                            EN SAVOIR PLUS
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Blog Grid Section -->
+        <section class="w-full px-4 sm:px-6 py-12 sm:py-16 bg-white dark:bg-gray-900 transition-colors duration-300">
+            <div class="max-w-7xl mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
+                    <!-- COLUMN 1 - UX Design & Digital Transformation -->
+                    <div class="space-y-4 sm:space-y-6">
+                        <!-- Header -->
+                        <div>
+                            <h3 class="text-xs sm:text-sm font-semibold uppercase tracking-wide text-gray-900 dark:text-white">
+                                UX Design & Transformation
+                            </h3>
+                            <div class="h-px bg-gray-400 dark:bg-gray-600 mt-2"></div>
+                        </div>
+                        <!-- Big image -->
+                        <div class="bg-gradient-to-br from-red-500 to-red-600 h-48 sm:h-56 transition-colors duration-300 flex items-center justify-center">
+                            <svg class="w-24 h-24 text-white/80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                            </svg>
+                        </div>
+                        <!-- Main text -->
+                        <div class="text-center space-y-2">
+                            <h4 class="font-serif text-base sm:text-lg text-gray-900 dark:text-white">
+                                Transformation Digitale Bancaire<br>
+                                pour Institutions Africaines
+                            </h4>
+                            <p class="text-xs text-gray-500 dark:text-gray-400">
+                                Depuis 2005 | Expertise Sectorielle
+                            </p>
+                        </div>
+                        <div class="h-px bg-gray-300 dark:bg-gray-700"></div>
+                        <!-- Small item -->
+                        <div class="flex gap-3 sm:gap-4">
+                            <div class="w-14 h-14 sm:w-16 sm:h-16 bg-red-100 dark:bg-gray-700 flex-shrink-0 transition-colors duration-300 flex items-center justify-center">
+                                <span class="text-2xl">🎨</span>
+                            </div>
+                            <p class="text-xs sm:text-sm text-gray-900 dark:text-gray-300">
+                                Design System & UX Research<br>
+                                pour Applications Bancaires
+                            </p>
+                        </div>
+                        <div class="h-px bg-gray-300 dark:bg-gray-700"></div>
+                        <!-- Small item -->
+                        <div class="flex gap-3 sm:gap-4">
+                            <div class="w-14 h-14 sm:w-16 sm:h-16 bg-red-100 dark:bg-gray-700 flex-shrink-0 transition-colors duration-300 flex items-center justify-center">
+                                <span class="text-2xl">📊</span>
+                            </div>
+                            <p class="text-xs sm:text-sm text-gray-900 dark:text-gray-300">
+                                Analytics & Data-Driven<br>
+                                User Experience Strategy
+                            </p>
+                        </div>
+                    </div>
+                    <!-- COLUMN 2 - Drupal & React Development -->
+                    <div class="space-y-4 sm:space-y-6">
+                        <div>
+                            <h3 class="text-xs sm:text-sm font-semibold uppercase tracking-wide text-gray-900 dark:text-white">
+                                Développement Web Expert
+                            </h3>
+                            <div class="h-px bg-gray-400 dark:bg-gray-600 mt-2"></div>
+                        </div>
+                        <div class="bg-gradient-to-br from-gray-800 to-gray-900 h-48 sm:h-56 transition-colors duration-300 flex items-center justify-center">
+                            <svg class="w-24 h-24 text-white/80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+                            </svg>
+                        </div>
+                        <div class="text-center space-y-2">
+                            <h4 class="font-serif text-base sm:text-lg text-gray-900 dark:text-white">
+                                Architectures Drupal & React<br>
+                                Performantes et Évolutives
+                            </h4>
+                            <p class="text-xs text-gray-500 dark:text-gray-400">
+                                Stack Moderne | DevOps Excellence
+                            </p>
+                        </div>
+                        <div class="h-px bg-gray-300 dark:bg-gray-700"></div>
+                        <div class="flex gap-3 sm:gap-4">
+                            <div class="w-14 h-14 sm:w-16 sm:h-16 bg-blue-100 dark:bg-gray-700 flex-shrink-0 transition-colors duration-300 flex items-center justify-center">
+                                <span class="text-2xl">⚙️</span>
+                            </div>
+                            <p class="text-xs sm:text-sm text-gray-900 dark:text-gray-300">
+                                Drupal CMS Headless<br>
+                                API-First Architecture
+                            </p>
+                        </div>
+                        <div class="h-px bg-gray-300 dark:bg-gray-700"></div>
+                        <div class="flex gap-3 sm:gap-4">
+                            <div class="w-14 h-14 sm:w-16 sm:h-16 bg-blue-100 dark:bg-gray-700 flex-shrink-0 transition-colors duration-300 flex items-center justify-center">
+                                <span class="text-2xl">⚛️</span>
+                            </div>
+                            <p class="text-xs sm:text-sm text-gray-900 dark:text-gray-300">
+                                React Components<br>
+                                & Next.js Applications
+                            </p>
+                        </div>
+                    </div>
+                    <!-- COLUMN 3 - DevOps & Cloud -->
+                    <div class="space-y-4 sm:space-y-6">
+                        <div>
+                            <h3 class="text-xs sm:text-sm font-semibold uppercase tracking-wide text-gray-900 dark:text-white">
+                                DevOps & Infrastructure
+                            </h3>
+                            <div class="h-px bg-gray-400 dark:bg-gray-600 mt-2"></div>
+                        </div>
+                        <div class="bg-gradient-to-br from-green-600 to-teal-600 h-48 sm:h-56 transition-colors duration-300 flex items-center justify-center">
+                            <svg class="w-24 h-24 text-white/80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01"></path>
+                            </svg>
+                        </div>
+                        <div class="text-center space-y-2">
+                            <h4 class="font-serif text-base sm:text-lg text-gray-900 dark:text-white">
+                                Infrastructure Cloud<br>
+                                Scalable & Sécurisée
+                            </h4>
+                            <p class="text-xs text-gray-500 dark:text-gray-400">
+                                CI/CD | Monitoring 24/7
+                            </p>
+                        </div>
+                        <div class="h-px bg-gray-300 dark:bg-gray-700"></div>
+                        <div class="flex gap-3 sm:gap-4">
+                            <div class="w-14 h-14 sm:w-16 sm:h-16 bg-green-100 dark:bg-gray-700 flex-shrink-0 transition-colors duration-300 flex items-center justify-center">
+                                <span class="text-2xl">🚀</span>
+                            </div>
+                            <p class="text-xs sm:text-sm text-gray-900 dark:text-gray-300">
+                                Déploiement Continu<br>
+                                Pipeline Automatisé
+                            </p>
+                        </div>
+                        <div class="h-px bg-gray-300 dark:bg-gray-700"></div>
+                        <div class="flex gap-3 sm:gap-4">
+                            <div class="w-14 h-14 sm:w-16 sm:h-16 bg-green-100 dark:bg-gray-700 flex-shrink-0 transition-colors duration-300 flex items-center justify-center">
+                                <span class="text-2xl">🔒</span>
+                            </div>
+                            <p class="text-xs sm:text-sm text-gray-900 dark:text-gray-300">
+                                Sécurité & Conformité<br>
+                                Standards Bancaires
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Section -->
+        <section class="w-full bg-white dark:bg-gray-900 py-16 transition-colors duration-300">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Card 1 - Banking Sector -->
+                    <div class="bg-white dark:bg-gray-800 shadow-xl hover:-translate-y-1 hover:shadow-2xl transition duration-300">
+                        <!-- Image -->
+                        <div class="h-64 bg-gradient-to-br from-blue-900 to-blue-700 flex items-center justify-center">
+                            <svg class="w-32 h-32 text-white/80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"></path>
+                            </svg>
+                        </div>
+                        <!-- Content -->
+                        <div class="p-6 text-center">
+                            <!-- Label -->
+                            <span class="inline-block border border-red-600 text-red-600 dark:border-red-400 dark:text-red-300 px-4 py-1 text-sm font-semibold uppercase mb-6">
+                            Banque & Assurance
+                            </span>
+                            <!-- Title -->
+                            <h3 class="text-lg font-serif mb-4 leading-relaxed text-gray-900 dark:text-white">
+                                Plateformes Bancaires<br />
+                                & Solutions Fintech
+                            </h3>
+                            <!-- Meta -->
+                            <p class="text-sm text-gray-600 dark:text-gray-400">
+                                +50 Projets | Maroc & Afrique
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Card 2 - Healthcare -->
+                    <div class="bg-white dark:bg-gray-800 shadow-xl hover:-translate-y-1 hover:shadow-2xl transition duration-300">
+                        <div class="h-64 bg-gradient-to-br from-green-700 to-teal-600 flex items-center justify-center">
+                            <svg class="w-32 h-32 text-white/80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path>
+                            </svg>
+                        </div>
+                        <div class="p-6 text-center">
+                            <span class="inline-block border border-red-600 text-red-600 dark:border-red-400 dark:text-red-300 px-4 py-1 text-sm font-semibold uppercase mb-6">
+                            Santé Digitale
+                            </span>
+                            <h3 class="text-lg font-serif mb-4 leading-relaxed text-gray-900 dark:text-white">
+                                Systèmes de Gestion<br />
+                                Hospitalière & Télémédecine
+                            </h3>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">
+                                Solutions Conformes | RGPD
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Card 3 - Telecom -->
+                    <div class="bg-white dark:bg-gray-800 shadow-xl hover:-translate-y-1 hover:shadow-2xl transition duration-300">
+                        <div class="h-64 bg-gradient-to-br from-purple-700 to-indigo-600 flex items-center justify-center">
+                            <svg class="w-32 h-32 text-white/80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8.111 16.404a5.5 5.5 0 017.778 0M12 20h.01m-7.08-7.071c3.904-3.905 10.236-3.905 14.141 0M1.394 9.393c5.857-5.857 15.355-5.857 21.213 0"></path>
+                            </svg>
+                        </div>
+                        <div class="p-6 text-center">
+                            <span class="inline-block border border-red-600 text-red-600 dark:border-red-400 dark:text-red-300 px-4 py-1 text-sm font-semibold uppercase mb-6">
+                            Télécoms & IoT
+                            </span>
+                            <h3 class="text-lg font-serif mb-4 leading-relaxed text-gray-900 dark:text-white">
+                                Portails Clients<br />
+                                & Applications Mobile
+                            </h3>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">
+                                Performance | Scalabilité
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Card 4 - Retail & Culture -->
+                    <div class="bg-white dark:bg-gray-800 shadow-xl hover:-translate-y-1 hover:shadow-2xl transition duration-300">
+                        <div class="h-64 bg-gradient-to-br from-orange-600 to-red-600 flex items-center justify-center">
+                            <svg class="w-32 h-32 text-white/80" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path>
+                            </svg>
+                        </div>
+                        <div class="p-6 text-center">
+                            <span class="inline-block border border-red-600 text-red-600 dark:border-red-400 dark:text-red-300 px-4 py-1 text-sm font-semibold uppercase mb-6">
+                            Retail & Culture
+                            </span>
+                            <h3 class="text-lg font-serif mb-4 leading-relaxed text-gray-900 dark:text-white">
+                                E-Commerce & Portails<br />
+                                Culturels Innovants
+                            </h3>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">
+                                UX Premium | Conversion
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- FAQ Accordion Section -->
+        <!-- Add this section before the Contact Form Section -->
+        <section class="w-full px-4 sm:px-6 py-12 sm:py-16 bg-gray-50 dark:bg-gray-800 transition-colors duration-300" aria-label="Questions fréquentes">
+            <div class="max-w-4xl mx-auto">
+                <!-- Section Title -->
+                <div class="text-center mb-12 sm:mb-16">
+                    <h2 class="text-3xl sm:text-4xl lg:text-5xl font-serif italic text-red-500 dark:text-red-400 mb-4">Questions Fréquentes</h2>
+                    <div class="w-24 h-1 bg-red-500 dark:bg-red-600 mx-auto mb-4"></div>
+                    <p class="text-sm sm:text-base text-gray-600 dark:text-gray-400">Tout ce que vous devez savoir sur nos services et notre expertise</p>
+                </div>
+                <!-- Accordion Items -->
+                <div class="space-y-4">
+                    <!-- Accordion Item 1 -->
+                    <div class="accordion-item bg-white dark:bg-gray-700 rounded-lg shadow-md overflow-hidden transition-colors duration-300">
+                        <button id="faq-header-1" type="button" class="accordion-header w-full flex items-center justify-between p-6 text-left hover:bg-gray-50 dark:hover:bg-gray-600 transition-colors" aria-expanded="false" aria-controls="faq-panel-1">
+                            <span class="text-lg font-semibold text-gray-900 dark:text-white">Quels sont vos domaines d'expertise principaux ?</span>
+                            <svg class="accordion-icon w-6 h-6 text-red-500 dark:text-red-400 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div id="faq-panel-1" class="accordion-content max-h-0 overflow-hidden transition-all duration-300" role="region" aria-labelledby="faq-header-1">
+                            <div class="p-6 pt-0 text-gray-700 dark:text-gray-300">
+                                <p class="mb-3">VOID se spécialise dans plusieurs domaines clés de la transformation digitale :</p>
+                                <ul class="list-disc pl-5 space-y-2">
+                                    <li><strong>UX/UI Design</strong> : Conception d'expériences utilisateur centrées sur les besoins réels</li>
+                                    <li><strong>Développement Drupal</strong> : Architectures CMS évolutives et performantes</li>
+                                    <li><strong>React & React Native</strong> : Applications web et mobile modernes</li>
+                                    <li><strong>DevOps & Cloud</strong> : Infrastructure scalable et sécurisée</li>
+                                    <li><strong>Transformation Digitale Bancaire</strong> : Solutions spécialisées pour le secteur financier</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Accordion Item 2 -->
+                    <div class="accordion-item bg-white dark:bg-gray-700 rounded-lg shadow-md overflow-hidden transition-colors duration-300">
+                        <button id="faq-header-2" type="button" class="accordion-header w-full flex items-center justify-between p-6 text-left hover:bg-gray-50 dark:hover:bg-gray-600 transition-colors" aria-expanded="false" aria-controls="faq-panel-2">
+                            <span class="text-lg font-semibold text-gray-900 dark:text-white">Travaillez-vous avec des clients internationaux ?</span>
+                            <svg class="accordion-icon w-6 h-6 text-red-500 dark:text-red-400 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div id="faq-panel-2" class="accordion-content max-h-0 overflow-hidden transition-all duration-300" role="region" aria-labelledby="faq-header-2">
+                            <div class="p-6 pt-0 text-gray-700 dark:text-gray-300">
+                                <p>Oui, absolument ! Depuis 2005, nous accompagnons des entreprises et institutions à travers l'Afrique et l'Europe. Notre expérience panafricaine nous permet de comprendre les spécificités culturelles et réglementaires de chaque marché. Nous travaillons notamment avec des acteurs majeurs de la banque, de l'assurance, de la santé et des télécommunications dans plusieurs pays.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Accordion Item 3 -->
+                    <div class="accordion-item bg-white dark:bg-gray-700 rounded-lg shadow-md overflow-hidden transition-colors duration-300">
+                        <button id="faq-header-3" type="button" class="accordion-header w-full flex items-center justify-between p-6 text-left hover:bg-gray-50 dark:hover:bg-gray-600 transition-colors" aria-expanded="false" aria-controls="faq-panel-3">
+                            <span class="text-lg font-semibold text-gray-900 dark:text-white">Quelle est votre approche méthodologique ?</span>
+                            <svg class="accordion-icon w-6 h-6 text-red-500 dark:text-red-400 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div id="faq-panel-3" class="accordion-content max-h-0 overflow-hidden transition-all duration-300" role="region" aria-labelledby="faq-header-3">
+                            <div class="p-6 pt-0 text-gray-700 dark:text-gray-300">
+                                <p class="mb-3">Nous adoptons une méthodologie agile et centrée sur l'utilisateur :</p>
+                                <ul class="list-disc pl-5 space-y-2">
+                                    <li><strong>Discovery</strong> : Analyse approfondie des besoins métiers et utilisateurs</li>
+                                    <li><strong>UX Research</strong> : Étude des comportements et tests utilisateurs</li>
+                                    <li><strong>Design Sprint</strong> : Prototypage rapide et itératif</li>
+                                    <li><strong>Développement Agile</strong> : Sprints courts avec livraisons régulières</li>
+                                    <li><strong>Data-Driven</strong> : Optimisation continue basée sur les données</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Accordion Item 4 -->
+                    <div class="accordion-item bg-white dark:bg-gray-700 rounded-lg shadow-md overflow-hidden transition-colors duration-300">
+                        <button id="faq-header-4" type="button" class="accordion-header w-full flex items-center justify-between p-6 text-left hover:bg-gray-50 dark:hover:bg-gray-600 transition-colors" aria-expanded="false" aria-controls="faq-panel-4">
+                            <span class="text-lg font-semibold text-gray-900 dark:text-white">Combien de temps dure un projet en moyenne ?</span>
+                            <svg class="accordion-icon w-6 h-6 text-red-500 dark:text-red-400 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div id="faq-panel-4" class="accordion-content max-h-0 overflow-hidden transition-all duration-300" role="region" aria-labelledby="faq-header-4">
+                            <div class="p-6 pt-0 text-gray-700 dark:text-gray-300">
+                                <p class="mb-3">La durée varie selon la complexité et l'envergure du projet :</p>
+                                <ul class="list-disc pl-5 space-y-2">
+                                    <li><strong>Site vitrine ou landing page</strong> : 4 à 8 semaines</li>
+                                    <li><strong>Plateforme web entreprise</strong> : 3 à 6 mois</li>
+                                    <li><strong>Application mobile</strong> : 4 à 8 mois</li>
+                                    <li><strong>Transformation digitale bancaire</strong> : 6 à 18 mois (en phases)</li>
+                                </ul>
+                                <p class="mt-3">Nous privilégions une approche par phases avec des livrables réguliers pour maximiser la valeur rapidement.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Accordion Item 5 -->
+                    <div class="accordion-item bg-white dark:bg-gray-700 rounded-lg shadow-md overflow-hidden transition-colors duration-300">
+                        <button id="faq-header-5" type="button" class="accordion-header w-full flex items-center justify-between p-6 text-left hover:bg-gray-50 dark:hover:bg-gray-600 transition-colors" aria-expanded="false" aria-controls="faq-panel-5">
+                            <span class="text-lg font-semibold text-gray-900 dark:text-white">Proposez-vous de la maintenance et du support après livraison ?</span>
+                            <svg class="accordion-icon w-6 h-6 text-red-500 dark:text-red-400 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div id="faq-panel-5" class="accordion-content max-h-0 overflow-hidden transition-all duration-300" role="region" aria-labelledby="faq-header-5">
+                            <div class="p-6 pt-0 text-gray-700 dark:text-gray-300">
+                                <p>Absolument ! Nous proposons plusieurs formules de maintenance et support adaptées à vos besoins : maintenance corrective et évolutive, monitoring 24/7 de l'infrastructure, optimisation continue des performances, support technique dédié, et accompagnement dans l'évolution de votre plateforme. Notre relation avec nos clients s'inscrit dans la durée - plusieurs de nos partenaires nous font confiance depuis plus de 7 ans.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Accordion Item 6 -->
+                    <div class="accordion-item bg-white dark:bg-gray-700 rounded-lg shadow-md overflow-hidden transition-colors duration-300">
+                        <button id="faq-header-6" type="button" class="accordion-header w-full flex items-center justify-between p-6 text-left hover:bg-gray-50 dark:hover:bg-gray-600 transition-colors" aria-expanded="false" aria-controls="faq-panel-6">
+                            <span class="text-lg font-semibold text-gray-900 dark:text-white">Comment se déroule le processus de démarrage d'un projet ?</span>
+                            <svg class="accordion-icon w-6 h-6 text-red-500 dark:text-red-400 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div id="faq-panel-6" class="accordion-content max-h-0 overflow-hidden transition-all duration-300" role="region" aria-labelledby="faq-header-6">
+                            <div class="p-6 pt-0 text-gray-700 dark:text-gray-300">
+                                <p class="mb-3">Notre processus de démarrage est structuré et transparent :</p>
+                                <ol class="list-decimal pl-5 space-y-2">
+                                    <li><strong>Premier contact</strong> : Échange pour comprendre vos besoins et objectifs</li>
+                                    <li><strong>Audit & Analyse</strong> : Étude de faisabilité et cadrage du projet (2-3 jours)</li>
+                                    <li><strong>Proposition</strong> : Présentation détaillée de notre approche, planning et budget</li>
+                                    <li><strong>Kick-off</strong> : Lancement officiel avec constitution de l'équipe dédiée</li>
+                                    <li><strong>Sprint 0</strong> : Ateliers collaboratifs pour affiner la vision et la roadmap</li>
+                                </ol>
+                                <p class="mt-3">Nous privilégions la transparence et la collaboration dès le début du projet.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Contact Form Section -->
+        <section id="contact" class="bg-gray-50 dark:bg-gray-800 py-12 sm:py-16 transition-colors duration-300">
+            <div class="container mx-auto px-4 sm:px-6">
+                <div class="max-w-6xl mx-auto">
+                    <!-- Section Title -->
+                    <div class="text-center mb-8 sm:mb-12">
+                        <h2 class="text-3xl sm:text-4xl font-serif italic text-red-500 dark:text-red-400 mb-2">Contactez-nous</h2>
+                        <div class="w-16 h-1 bg-red-500 dark:bg-red-600 mx-auto mb-4"></div>
+                        <p class="text-sm sm:text-base text-gray-600 dark:text-gray-400">Parlons de votre projet de transformation digitale</p>
+                    </div>
+                    <!-- Form Grid -->
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
+                        <!-- Left Column: Form -->
+                        <div class="bg-white dark:bg-gray-700 p-6 sm:p-8 rounded shadow-sm transition-colors duration-300">
+                            <form id="contactForm">
+                                <!-- Name -->
+                                <div class="mb-4 sm:mb-6">
+                                    <label class="block text-xs sm:text-sm font-bold mb-2 text-gray-900 dark:text-white" for="name">Your Name</label>
+                                    <input 
+                                        class="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white rounded focus:outline-none focus:border-red-500 dark:focus:border-red-400 transition-colors" 
+                                        type="text" 
+                                        id="name" 
+                                        name="name"
+                                        autocomplete="name"
+                                        placeholder="Entrez votre nom"
+                                        required>
+                                </div>
+                                <!-- Email -->
+                                <div class="mb-4 sm:mb-6">
+                                    <label class="block text-xs sm:text-sm font-bold mb-2 text-gray-900 dark:text-white" for="email">Your Email</label>
+                                    <input 
+                                        class="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white rounded focus:outline-none focus:border-red-500 dark:focus:border-red-400 transition-colors" 
+                                        type="email" 
+                                        id="email" 
+                                        name="email"
+                                        autocomplete="email"
+                                        placeholder="Entrez votre email"
+                                        required>
+                                </div>
+                                <!-- Numero de tel -->
+                                <div class="mb-4 sm:mb-6">
+                                    <label class="block text-xs sm:text-sm font-bold mb-2 text-gray-900 dark:text-white" for="num_tel">Numero de tel</label>
+                                    <input 
+                                        class="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white rounded focus:outline-none focus:border-red-500 dark:focus:border-red-400 transition-colors" 
+                                        type="text" 
+                                        id="num_tel" 
+                                        name="phone"
+                                        autocomplete="tel"
+                                        placeholder="Entrez votre numero de tel"
+                                        required>
+                                </div>
+                                <!-- Subject -->
+                                <div class="mb-4 sm:mb-6">
+                                    <label class="block text-xs sm:text-sm font-bold mb-2 text-gray-900 dark:text-white" for="subject">Subject</label>
+                                    <input 
+                                        class="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white rounded focus:outline-none focus:border-red-500 dark:focus:border-red-400 transition-colors" 
+                                        type="text" 
+                                        id="subject" 
+                                        name="subject"
+                                        placeholder="Objet de votre demande"
+                                        required>
+                                </div>
+                                <!-- Message -->
+                                <div class="mb-4 sm:mb-6">
+                                    <label class="block text-xs sm:text-sm font-bold mb-2 text-gray-900 dark:text-white" for="message">Message</label>
+                                <textarea 
+                                        class="w-full px-3 sm:px-4 py-2 sm:py-3 text-sm sm:text-base border border-gray-300 dark:border-gray-600 dark:bg-gray-800 dark:text-white rounded focus:outline-none focus:border-red-500 dark:focus:border-red-400 transition-colors" 
+                                        id="message" 
+                                        name="message"
+                                        rows="5" 
+                                        placeholder="Ecrire votre message"
+                                        required></textarea>
+                                </div>
+                                <!-- Submit Button -->
+                                <button 
+                                    class="bg-red-600 hover:bg-red-700 dark:bg-red-500 dark:hover:bg-red-400 text-white font-bold px-6 sm:px-8 py-2 sm:py-3 rounded w-full text-sm sm:text-base transition-colors" 
+                                    type="submit"
+                                    >
+                                ENVOYER LE MESSAGE
+                                </button>
+                            </form>
+                        </div>
+                        <!-- Right Column: Contact Info -->
+                        <div class="space-y-6 sm:space-y-8">
+                            <div>
+                                <h3 class="text-xl sm:text-2xl font-serif italic mb-3 sm:mb-4 text-gray-900 dark:text-white">Informations de Contact</h3>
+                                <p class="text-sm sm:text-base text-gray-700 dark:text-gray-300 leading-relaxed mb-4 sm:mb-6">
+                                    Notre équipe d'experts est à votre disposition pour discuter de vos projets de transformation digitale. Contactez-nous pour un audit gratuit de vos besoins.
+                                </p>
+                            </div>
+                            <!-- Contact Details -->
+                            <div class="space-y-3 sm:space-y-4">
+                                <div class="flex items-start gap-3 sm:gap-4">
+                                    <div class="bg-gray-200 dark:bg-gray-600 p-3 sm:p-4 rounded transition-colors duration-300">
+                                        <svg class="w-5 h-5 sm:w-6 sm:h-6 text-red-500 dark:text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold mb-1 text-sm sm:text-base text-gray-900 dark:text-white">Address</h4>
+                                        <p class="text-gray-600 dark:text-gray-400 text-xs sm:text-sm">Casablanca, Maroc<br>Quartier des Affaires</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start gap-3 sm:gap-4">
+                                    <div class="bg-gray-200 dark:bg-gray-600 p-3 sm:p-4 rounded transition-colors duration-300">
+                                        <svg class="w-5 h-5 sm:w-6 sm:h-6 text-red-500 dark:text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold mb-1 text-sm sm:text-base text-gray-900 dark:text-white">Phone</h4>
+                                        <p class="text-gray-600 dark:text-gray-400 text-xs sm:text-sm">+212 6 12 34 56 78</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start gap-3 sm:gap-4">
+                                    <div class="bg-gray-200 dark:bg-gray-600 p-3 sm:p-4 rounded transition-colors duration-300">
+                                        <svg class="w-5 h-5 sm:w-6 sm:h-6 text-red-500 dark:text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold mb-1 text-sm sm:text-base text-gray-900 dark:text-white">Email</h4>
+                                        <p class="text-gray-600 dark:text-gray-400 text-xs sm:text-sm">contact@void.fr</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Footer -->
+        <footer class="bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 py-8 sm:py-12 transition-colors duration-300">
+            <div class="container mx-auto px-4 sm:px-6">
+                <div class="max-w-6xl mx-auto">
+                    <!-- Footer Top -->
+                    <div class="flex flex-col lg:flex-row justify-between items-center gap-6 mb-6 sm:mb-8">
+                        <div class="text-center lg:text-left">
+                            <h2 class="text-xl sm:text-2xl font-bold text-red-500 dark:text-red-400 mb-2">VOID</h2>
+                            <p class="text-xs sm:text-sm text-gray-500 dark:text-gray-400">Agence Digitale Casablanca Expert UX, Drupal & Transformation Bancaire</p>
+                        </div>
+                        <nav class="flex flex-wrap justify-center gap-6 sm:gap-8 lg:gap-12" aria-label="Navigation pied de page">
+                            <a href="#hero" class="text-sm sm:text-base text-gray-800 dark:text-gray-200 hover:text-red-500 dark:hover:text-red-400 font-medium transition-colors">HOME</a>
+                            <a href="#about" class="text-sm sm:text-base text-gray-800 dark:text-gray-200 hover:text-red-500 dark:hover:text-red-400 font-medium transition-colors">USER</a>
+                            <a href="#contact" class="text-sm sm:text-base text-gray-800 dark:text-gray-200 hover:text-red-500 dark:hover:text-red-400 font-medium transition-colors">CONTACT US</a>
+                            <button type="button" aria-label="Ouvrir la recherche" class="text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 transition-colors">
+                                <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                                </svg>
+                            </button>
+                        </nav>
+                    </div>
+                    <!-- Footer Bottom -->
+                    <div class="w-full border-t border-gray-200 py-10">
+                        <div class="max-w-7xl mx-auto px-6 flex flex-col lg:flex-row items-center justify-between gap-10">
+                            <!-- Newsletter -->
+                            <div class="w-full lg:w-auto">
+                                <h3 class="font-semibold text-lg mb-4 text-gray-900 dark:text-white">
+                                    Abonnez-vous à la newsletter!
+                                </h3>
+                                <div class="flex w-full max-w-md">
+                                    <input
+                                        type="email"
+                                        placeholder="a.sadiki@void.fr"
+                                        aria-label="Votre adresse email pour la newsletter"
+                                        autocomplete="email"
+                                        class="flex-1 bg-gray-100 px-4 py-3 text-gray-600 focus:outline-none"
+                                        />
+                                    <button
+                                        class="bg-red-500 text-white font-bold px-6 py-3 hover:bg-red-600 transition"
+                                        >
+                                    ABONNEZ
+                                    </button>
+                                </div>
+                            </div>
+                            <!-- Social Icons -->
+                            <div class="flex items-center gap-4">
+                                <a href="#" aria-label="Facebook" class="w-10 h-10 rounded-full flex items-center justify-center text-white text-lg">
+                                    <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M30 14.9999C30 12.0336 29.1205 9.13398 27.4727 6.66745C25.8248 4.20092 23.4827 2.27825 20.7424 1.14266C18.002 0.00707287 14.9865 -0.290461 12.0771 0.287561C9.16761 0.865584 6.49485 2.29322 4.39669 4.39007C2.29854 6.48693 0.869195 9.15888 0.289366 12.068C-0.290464 14.9771 0.00525261 17.9926 1.13914 20.7337C2.27302 23.4747 4.19415 25.8181 6.65966 27.4675C9.12517 29.1168 12.0243 29.9982 14.9907 30C16.9613 30.0012 18.9128 29.6141 20.7338 28.8609C22.5547 28.1076 24.2094 27.0028 25.6033 25.6098C26.9971 24.2168 28.1029 22.5628 28.8573 20.7423C29.6117 18.9218 30 16.9705 30 14.9999Z" fill="#AEAEAE"/>
+                                        <path d="M30 14.9999C30 12.0336 29.1205 9.13398 27.4727 6.66745C25.8248 4.20092 23.4827 2.27825 20.7424 1.14266C18.002 0.00707287 14.9865 -0.290461 12.0771 0.287561C9.16761 0.865584 6.49485 2.29322 4.39669 4.39007C2.29854 6.48693 0.869195 9.15888 0.289366 12.068C-0.290464 14.9771 0.00525261 17.9926 1.13914 20.7337C2.27302 23.4747 4.19415 25.8181 6.65966 27.4675C9.12517 29.1168 12.0243 29.9982 14.9907 30C16.9613 30.0012 18.9128 29.6141 20.7338 28.8609C22.5547 28.1076 24.2094 27.0028 25.6033 25.6098C26.9971 24.2168 28.1029 22.5628 28.8573 20.7423C29.6117 18.9218 30 16.9705 30 14.9999Z" fill="#385295"/>
+                                        <path d="M16.314 11.4479V10.0309C16.2989 9.92104 16.3081 9.80942 16.341 9.70356C16.3739 9.5977 16.4297 9.50024 16.5044 9.41838C16.5792 9.33651 16.671 9.27206 16.7734 9.2297C16.8759 9.18733 16.9864 9.1681 17.0971 9.17325H19.1015V6.15275H16.3513C15.8516 6.11349 15.3494 6.18294 14.8791 6.35646C14.4089 6.52997 13.9818 6.80341 13.6274 7.15784C13.273 7.51227 12.9996 7.9394 12.8261 8.40965C12.6526 8.87989 12.583 9.38208 12.6223 9.88177V11.4852H10.8604V15.0372H12.641V23.8656H16.1929V14.9812H18.8311L19.1481 11.4292L16.314 11.4479Z" fill="white"/>
+                                    </svg>
+                                </a>
+                                <a href="#" aria-label="Twitter / X" class="w-10 h-10 rounded-full flex items-center justify-center text-white text-lg">
+                                    <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M29.9348 14.9673C29.9348 12.007 29.057 9.11332 27.4124 6.65194C25.7677 4.19056 23.4301 2.27224 20.6952 1.13939C17.9603 0.00653835 14.9508 -0.289938 12.0474 0.287583C9.14403 0.865104 6.4771 2.29064 4.38387 4.38387C2.29064 6.4771 0.865123 9.14399 0.287601 12.0474C-0.28992 14.9508 0.00648571 17.9603 1.13933 20.6952C2.27218 23.4302 4.19059 25.7677 6.65197 27.4123C9.11335 29.057 12.0072 29.9348 14.9674 29.9348C18.937 29.9348 22.7441 28.3579 25.551 25.551C28.3579 22.744 29.9348 18.9369 29.9348 14.9673Z" fill="#AEAEAE"/>
+                                        <path d="M29.9348 15.0418C29.9367 12.0812 29.0604 9.18636 27.4169 6.72376C25.7734 4.26115 23.4364 2.34139 20.7016 1.20712C17.9669 0.0728412 14.9571 -0.224791 12.0531 0.35168C9.14911 0.928151 6.48131 2.35284 4.38715 4.4457C2.29299 6.53856 0.866558 9.20556 0.288283 12.1092C-0.289992 15.0129 0.00586665 18.0227 1.13844 20.7582C2.27102 23.4937 4.18942 25.8318 6.651 27.4769C9.11258 29.1219 12.0067 30 14.9674 30C18.9354 30 22.741 28.4243 25.5477 25.6194C28.3544 22.8144 29.9324 19.0098 29.9348 15.0418Z" fill="#479FD7"/>
+                                        <path d="M23.6504 10.5516C23.0542 10.7944 22.4294 10.96 21.7911 11.0444C22.5016 10.6153 23.0482 9.96075 23.3437 9.18508C23.3476 9.17401 23.348 9.16209 23.3447 9.1508C23.3414 9.13952 23.3347 9.12942 23.3254 9.12221C23.3161 9.11499 23.3048 9.11103 23.2931 9.11063C23.2813 9.11023 23.2697 9.1136 23.26 9.12016C22.5786 9.49839 21.841 9.76502 21.0753 9.91023C20.7335 9.55222 20.3222 9.26774 19.8666 9.07432C19.411 8.88089 18.9207 8.78262 18.4258 8.78539C17.4707 8.77795 16.5517 9.14954 15.8703 9.81876C15.1889 10.488 14.8007 11.4003 14.7908 12.3553C14.788 12.6308 14.8193 12.9055 14.8838 13.1733C13.4546 13.1005 12.056 12.7325 10.776 12.0925C9.496 11.4525 8.36241 10.5544 7.44658 9.45471C6.99847 10.2299 6.86056 11.146 7.06064 12.0187C7.26072 12.8915 7.78392 13.6562 8.52497 14.1588C7.9865 14.1247 7.461 13.9791 6.98176 13.7312C7.00106 14.1773 7.0824 14.6183 7.22346 15.0419C7.45597 15.6008 7.82137 16.0944 8.28796 16.48C8.75455 16.8656 9.30822 17.1316 9.90087 17.2546C9.59773 17.3371 9.28535 17.3807 8.97122 17.3847C8.75285 17.3814 8.53513 17.3596 8.32045 17.3195C8.56063 18.0162 9.00639 18.6238 9.5989 19.062C10.1914 19.5001 10.9028 19.7484 11.6393 19.774C10.3535 20.7502 8.78212 21.276 7.16769 21.2706C6.8786 21.2705 6.5898 21.2518 6.3031 21.2147C7.97106 22.2716 9.90641 22.8299 11.881 22.8232C14.3742 22.8712 16.7974 21.9971 18.6861 20.3688C20.3412 18.9009 21.4925 16.9495 21.9771 14.7909C22.1377 14.0799 22.2218 13.3537 22.2281 12.6247C22.2281 12.476 22.2281 12.318 22.2281 12.1599C22.8862 11.6955 23.4613 11.1237 23.9293 10.4681C23.9238 10.4498 23.9148 10.4328 23.9027 10.418C23.8906 10.4031 23.8757 10.3907 23.8589 10.3816C23.8421 10.3726 23.8236 10.367 23.8046 10.3651C23.7856 10.3631 23.7664 10.365 23.748 10.3705C23.7297 10.376 23.7127 10.385 23.6979 10.3971C23.6831 10.4092 23.6708 10.424 23.6617 10.4409C23.6526 10.4577 23.647 10.4761 23.645 10.4951C23.6431 10.5141 23.6449 10.5333 23.6504 10.5516Z" fill="white"/>
+                                    </svg>
+                                </a>
+                                <a href="#" aria-label="LinkedIn" class="w-10 h-10 rounded-full flex items-center justify-center text-white text-lg">
+                                    <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M15 0C12.0333 0 9.1332 0.87959 6.66646 2.52781C4.19972 4.17604 2.27713 6.51867 1.14181 9.25956C0.00649377 12.0005 -0.290549 15.0165 0.28823 17.9262C0.867009 20.8359 2.29562 23.5088 4.39341 25.6066C6.49121 27.7044 9.16394 29.133 12.0737 29.7118C14.9834 30.2905 17.9994 29.9936 20.7403 28.8582C23.4812 27.7229 25.8239 25.8002 27.4721 23.3335C29.1203 20.8668 30.0001 17.9666 30.0001 14.9999C30.0001 11.0217 28.4197 7.20645 25.6067 4.3934C22.7936 1.58035 18.9783 0 15 0Z" fill="#AEAEAE"/>
+                                        <path d="M15 0C12.0333 0 9.1332 0.87959 6.66646 2.52781C4.19972 4.17604 2.27713 6.51867 1.14181 9.25956C0.00649377 12.0005 -0.290549 15.0165 0.28823 17.9262C0.867009 20.8359 2.29562 23.5088 4.39341 25.6066C6.49121 27.7044 9.16394 29.133 12.0737 29.7118C14.9834 30.2905 17.9994 29.9936 20.7403 28.8582C23.4812 27.7229 25.8239 25.8002 27.4721 23.3335C29.1203 20.8668 30.0001 17.9666 30.0001 14.9999C30.0001 11.0217 28.4197 7.20645 25.6067 4.3934C22.7936 1.58035 18.9783 0 15 0Z" fill="#29AED7"/>
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M5.02539 12.1618V11.557C5.05899 11.4538 5.08389 11.3479 5.09983 11.2406C5.20189 10.4256 5.52353 9.65373 6.03036 9.00739C6.84708 8.0372 7.96383 7.36685 9.20411 7.10228C10.4444 6.8377 11.7375 6.99394 12.879 7.54641C13.0498 7.63981 13.2428 7.68497 13.4373 7.67681C14.6115 7.55869 15.7971 7.63731 16.9454 7.90944C20.9094 8.9144 23.9522 12.4781 23.4032 16.7678C23.3888 16.9599 23.4343 17.1518 23.5335 17.3169C23.8947 17.9228 24.1133 18.603 24.173 19.3058C24.2326 20.0087 24.1317 20.716 23.8778 21.3741C23.5973 22.0678 23.1781 22.6969 22.646 23.2231C22.1139 23.7492 21.48 24.1613 20.7831 24.4339C20.0862 24.7066 19.341 24.8341 18.5932 24.8088C17.8453 24.7834 17.1104 24.6057 16.4336 24.2865C16.1363 24.1718 15.8216 24.1089 15.5031 24.1004C14.5417 24.0996 13.5813 24.0375 12.6278 23.9144C10.5399 23.5339 8.67442 22.3748 7.40829 20.6716C6.14216 18.9685 5.56985 16.8482 5.80703 14.7393C5.84544 14.6342 5.84544 14.5189 5.80703 14.4138C5.37062 13.7362 5.10262 12.964 5.02539 12.1618ZM14.6842 21.2344C16.0302 21.2934 17.3522 20.8638 18.4063 20.0246C18.7527 19.7351 19.0221 19.3646 19.1904 18.9458C19.3587 18.5269 19.4208 18.0727 19.371 17.624C19.3213 17.1754 19.1613 16.7459 18.9053 16.3741C18.6493 16.0023 18.3052 15.6997 17.9038 15.4931C17.273 15.2115 16.6192 14.9843 15.9497 14.8138C15.0192 14.5347 14.0235 14.3299 13.0744 14.0508C12.8738 14.0199 12.6906 13.9188 12.5577 13.7654C12.4248 13.612 12.3506 13.4164 12.3486 13.2134C12.3446 12.9944 12.418 12.7809 12.5559 12.6107C12.6938 12.4405 12.8873 12.3244 13.1023 12.2829C13.6202 12.1526 14.1505 12.0777 14.6842 12.0595C15.0598 12.0269 15.4366 12.1056 15.7677 12.286C16.0987 12.4664 16.3692 12.7403 16.5453 13.0737C16.6879 13.3036 16.8531 13.5188 17.0384 13.7159C17.2193 13.8775 17.448 13.9759 17.6897 13.996C17.9315 14.0162 18.1732 13.9569 18.3784 13.8274C18.5857 13.7229 18.7464 13.5448 18.829 13.3279C18.9117 13.1109 18.9103 12.8709 18.825 12.655C18.7042 12.2748 18.4954 11.9283 18.2158 11.6438C17.9361 11.3593 17.5933 11.1446 17.2152 11.0172C15.6359 10.3801 13.8817 10.3242 12.2649 10.8591C11.6127 11.0261 11.0279 11.3899 10.5899 11.9012C10.3493 12.1984 10.1847 12.5498 10.1103 12.9249C10.036 13.2999 10.0541 13.6874 10.1631 14.0539C10.2722 14.4204 10.4688 14.7549 10.7361 15.0283C11.0034 15.3017 11.3333 15.506 11.6972 15.6233C12.4554 15.9005 13.2291 16.1335 14.0142 16.3212C14.7307 16.5259 15.4752 16.6656 16.173 16.9168C16.4074 16.9879 16.6131 17.1316 16.7603 17.3273C16.9075 17.5231 16.9886 17.7606 16.9919 18.0055C17.0108 18.2538 16.952 18.502 16.8236 18.7154C16.6952 18.9288 16.5036 19.0969 16.2754 19.1966C15.7655 19.3977 15.2299 19.5261 14.6842 19.578C14.1585 19.6626 13.6199 19.5575 13.1648 19.2813C12.7096 19.0051 12.3675 18.576 12.1997 18.0707C12.1533 17.9516 12.0973 17.8363 12.0322 17.7263C11.9046 17.4515 11.674 17.238 11.3902 17.1317C11.1064 17.0255 10.7922 17.0353 10.5155 17.1588C10.3881 17.2133 10.2729 17.2927 10.1766 17.3923C10.0803 17.4919 10.0049 17.6097 9.95461 17.7388C9.90436 17.8679 9.88034 18.0056 9.88397 18.1441C9.8876 18.2825 9.91881 18.419 9.97576 18.5453C10.1648 19.1757 10.5453 19.7318 11.0645 20.1364C12.1147 20.8962 13.3889 21.2826 14.6842 21.2344Z" fill="white"/>
+                                    </svg>
+                                </a>
+                                <a href="#" aria-label="WhatsApp" class="w-10 h-10 rounded-full flex items-center justify-center text-white text-lg">
+                                    <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M30 14.9999C30 12.0332 29.1202 9.13305 27.472 6.66632C25.8238 4.19958 23.4811 2.27707 20.7402 1.14175C17.9993 0.00643974 14.9834 -0.29053 12.0736 0.288248C9.16394 0.867025 6.49117 2.29548 4.39338 4.39326C2.2956 6.49105 0.867003 9.16396 0.288226 12.0737C-0.290552 14.9834 0.00650308 17.9994 1.14182 20.7403C2.27713 23.4812 4.1997 25.8238 6.66644 27.472C9.13317 29.1203 12.0333 30 15 30C18.9782 30 22.7935 28.4197 25.6066 25.6066C28.4196 22.7936 30 18.9782 30 14.9999Z" fill="#AEAEAE"/>
+                                        <path d="M30 14.9999C30 12.0332 29.1202 9.13305 27.472 6.66632C25.8238 4.19958 23.4811 2.27707 20.7402 1.14175C17.9993 0.00643974 14.9834 -0.29053 12.0736 0.288248C9.16394 0.867025 6.49117 2.29548 4.39338 4.39326C2.2956 6.49105 0.867003 9.16396 0.288226 12.0737C-0.290552 14.9834 0.00650308 17.9994 1.14182 20.7403C2.27713 23.4812 4.1997 25.8238 6.66644 27.472C9.13317 29.1203 12.0333 30 15 30C18.9782 30 22.7935 28.4197 25.6066 25.6066C28.4196 22.7936 30 18.9782 30 14.9999Z" fill="#487FC0"/>
+                                        <path d="M11.3263 11.3361H7.85828V21.2645H11.3263V11.3361Z" fill="white"/>
+                                        <path d="M9.62062 6.3765C9.27542 6.37651 8.938 6.47905 8.65112 6.67102C8.36423 6.86299 8.14081 7.13579 8.00914 7.45488C7.87747 7.77397 7.84347 8.12496 7.9115 8.46338C7.97953 8.8018 8.14649 9.11237 8.39123 9.35581C8.63597 9.59924 8.94749 9.7646 9.28627 9.83081C9.62505 9.89702 9.97585 9.86108 10.2942 9.72771C10.6126 9.59433 10.8842 9.36946 11.0747 9.08155C11.2651 8.79364 11.3658 8.45579 11.3639 8.1106C11.3652 7.88175 11.3209 7.65482 11.2336 7.44327C11.1463 7.23172 11.0178 7.03975 10.8556 6.87837C10.6933 6.71698 10.5005 6.58943 10.2885 6.50328C10.0765 6.41713 9.84945 6.37403 9.62062 6.3765Z" fill="white"/>
+                                        <path d="M22.7463 14.3846C22.5133 12.5201 21.5717 11.3361 19.0173 11.3361C17.2181 11.3361 16.5096 11.6157 16.0994 12.3988V11.3361H13.3026V21.2645H16.2019V16.0625C16.2019 14.7667 16.4443 13.7878 18.0664 13.7878C19.6885 13.7878 19.7725 14.9998 19.7725 16.1558V21.2645H22.7557C22.7557 21.2645 22.8023 14.8228 22.7463 14.3846Z" fill="white"/>
+                                    </svg>
+                                </a>
+                                <a href="#" aria-label="Autre réseau social" class="w-10 h-10 rounded-full flex items-center justify-center text-white text-lg">
+                                    <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M30 14.9999C30 12.0332 29.1202 9.13305 27.472 6.66632C25.8238 4.19958 23.4811 2.27707 20.7402 1.14175C17.9993 0.00643974 14.9833 -0.29053 12.0736 0.288248C9.16391 0.867025 6.49117 2.29548 4.39338 4.39326C2.2956 6.49105 0.867003 9.16396 0.288226 12.0737C-0.290552 14.9834 0.00650308 17.9994 1.14182 20.7403C2.27713 23.4812 4.1997 25.8238 6.66644 27.472C9.13317 29.1203 12.0333 30 15 30C18.9782 30 22.7935 28.4197 25.6066 25.6066C28.4196 22.7936 30 18.9782 30 14.9999Z" fill="#AEAEAE"/>
+                                        <path d="M30 14.9999C30 12.0332 29.1202 9.13305 27.472 6.66632C25.8238 4.19958 23.4811 2.27707 20.7402 1.14175C17.9993 0.00643974 14.9833 -0.29053 12.0736 0.288248C9.16391 0.867025 6.49117 2.29548 4.39338 4.39326C2.2956 6.49105 0.867003 9.16396 0.288226 12.0737C-0.290552 14.9834 0.00650308 17.9994 1.14182 20.7403C2.27713 23.4812 4.1997 25.8238 6.66644 27.472C9.13317 29.1203 12.0333 30 15 30C18.9782 30 22.7935 28.4197 25.6066 25.6066C28.4196 22.7936 30 18.9782 30 14.9999Z" fill="#0BE370"/>
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M14.2817 12.4826L14.7571 11.7274C15.5682 10.3943 16.3699 9.05184 17.181 7.72804C17.2705 7.53176 17.4014 7.35739 17.5649 7.21662C17.7283 7.07585 17.9203 6.97215 18.1277 6.91277C18.3351 6.8534 18.5529 6.83955 18.766 6.87249C18.9792 6.90542 19.1827 6.98431 19.3625 7.1035L24.4246 9.6672C24.6493 9.76356 24.8383 9.92763 24.9653 10.1365C25.0923 10.3454 25.151 10.5887 25.1331 10.8325C25.1331 14.6361 25.1331 18.449 25.1331 22.2526C25.1781 22.5312 25.1388 22.8168 25.0204 23.0729C24.902 23.329 24.7098 23.544 24.4684 23.6902C24.2271 23.8364 23.9476 23.9073 23.6657 23.8936C23.3839 23.88 23.1125 23.7825 22.8864 23.6137C20.1922 22.2713 17.5073 20.901 14.8224 19.5399L13.2003 18.7287V21.2551C13.2003 21.6373 13.2003 22.0195 13.2003 22.3924C13.2314 22.6481 13.1893 22.9076 13.0789 23.1403C12.9684 23.373 12.7943 23.5696 12.5765 23.7072C12.3588 23.8449 12.1065 23.9178 11.8489 23.9178C11.5913 23.9177 11.339 23.8448 11.1213 23.707C9.80686 23.0638 8.50171 22.3831 7.19655 21.7212C6.97281 21.6093 6.73975 21.5069 6.52533 21.3857C6.22504 21.2377 5.97284 21.0077 5.79794 20.7223C5.62305 20.4368 5.53262 20.1077 5.53714 19.7729C5.53714 15.9507 5.53714 12.1284 5.53714 8.30615C5.51539 8.07818 5.55673 7.84853 5.65663 7.64246C5.75653 7.4364 5.91117 7.26177 6.10361 7.13764C6.29606 7.01351 6.51891 6.94475 6.74784 6.93872C6.97676 6.93269 7.20294 6.98967 7.40165 7.1035C9.15429 7.96118 10.8976 8.85622 12.6316 9.75119C12.8563 9.89398 13.0395 10.0932 13.163 10.3291C13.5452 11.0096 13.8901 11.7461 14.2817 12.4826ZM12.3333 16.6498C12.3333 14.7356 12.3333 12.8245 12.3333 10.9165C12.3499 10.8025 12.3277 10.6863 12.2702 10.5865C12.2127 10.4867 12.1232 10.4092 12.0163 10.3664C10.3942 9.56465 8.79071 8.73484 7.16859 7.92378C6.59059 7.62546 6.35753 7.77466 6.35753 8.43656C6.35753 12.1656 6.35753 15.8946 6.35753 19.6236C6.34404 19.8368 6.39567 20.0491 6.50556 20.2322C6.61544 20.4154 6.7784 20.5608 6.97282 20.6492C8.43646 21.3857 9.89076 22.1407 11.3544 22.8678C12.0256 23.2035 12.3333 23.0078 12.3333 22.2526V16.6498ZM24.2661 10.5621C24.1674 10.4939 24.0647 10.4317 23.9585 10.3757L19.0362 7.87735C18.4302 7.5697 18.2344 7.63483 17.8802 8.21283C16.9479 9.80699 15.9318 11.4199 14.9529 13.0141C14.8713 13.1158 14.823 13.2401 14.8147 13.3703C14.8063 13.5004 14.8383 13.6298 14.9063 13.741C15.5495 14.953 16.1648 16.1744 16.7708 17.3956L18.2904 20.3695L24.2661 10.5621ZM19.0642 20.7516C20.5278 21.4881 21.9355 22.2246 23.3619 22.9145C23.9305 23.1849 24.2941 22.9146 24.2941 22.2993V12.5851C24.2941 12.5011 24.2941 12.4173 24.2941 12.2029C22.4949 15.1115 20.7888 17.8989 19.0642 20.7516ZM13.2842 12.3613H13.1909C13.1909 14.0767 13.1909 15.792 13.1909 17.5074C13.1958 17.5652 13.2124 17.6216 13.2396 17.6729C13.2668 17.7241 13.3042 17.7694 13.3494 17.8058L17.0225 19.6703L13.2842 12.3613Z" fill="white"/>
+                                    </svg>
+                                </a>
+                            </div>
+                            <!-- Contact Info -->
+                            <div class="text-center lg:text-right space-y-3">
+                                <p class="flex items-center justify-center lg:justify-end gap-3 text-lg font-medium text-gray-900 dark:text-white">
+                                    <span class="text-red-500 text-xl">📞</span>
+                                    +212 6 12 34 56 78 
+                                </p>
+                                <p class="flex items-center justify-center lg:justify-end gap-3 text-lg font-medium text-gray-900 dark:text-white">
+                                    <span class="text-red-500 text-xl">✉</span>
+                                    a.sadiki@void.fr
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Copyright -->
+                    <div class="text-center mt-6 sm:mt-8 pt-6 sm:pt-8 border-t border-gray-200 dark:border-gray-700">
+                        <p class="text-xs sm:text-sm text-gray-600 dark:text-gray-400">© 2026 VOID - Agence digitale à Casablanca</p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        </main>
+        <!-- External JavaScript -->
+        <script src="script.js" defer></script>
+    </body>
+</html>

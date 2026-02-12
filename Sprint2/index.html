@@ -48,7 +48,7 @@
                         <a href="#hero" class="text-sm sm:text-base text-gray-800 dark:text-gray-200 hover:text-red-500 dark:hover:text-red-400 font-medium transition-colors">HOME</a>
                         <a href="#about" class="text-sm sm:text-base text-gray-800 dark:text-gray-200 hover:text-red-500 dark:hover:text-red-400 font-medium transition-colors">USER</a>
                         <a href="#contact" class="text-sm sm:text-base text-gray-800 dark:text-gray-200 hover:text-red-500 dark:hover:text-red-400 font-medium transition-colors">CONTACT US</a>
-                        <button type="button" aria-label="Ouvrir la recherche" class="text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 transition-colors">
+                        <button id="search-toggle" type="button" aria-label="Ouvrir la recherche" class="text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 transition-colors">
                             <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                             </svg>
@@ -66,6 +66,69 @@
                 </div>
             </div>
         </header>
+        
+        <!-- Search Overlay -->
+        <div id="search-overlay" class="fixed inset-0 bg-white dark:bg-gray-900 z-50 opacity-0 invisible transition-all duration-300 ease-in-out" aria-hidden="true">
+            <div class="container mx-auto px-4 sm:px-6 h-full flex flex-col">
+                <!-- Close Button -->
+                <div class="flex justify-end pt-6 sm:pt-8">
+                    <button id="search-close" type="button" aria-label="Fermer la recherche" class="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 transition-colors p-2">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                </div>
+                
+                <!-- Search Content -->
+                <div class="flex-1 flex items-center justify-center">
+                    <div class="w-full max-w-3xl">
+                        <!-- Search Title -->
+                        <h2 class="text-2xl sm:text-3xl lg:text-4xl font-serif text-gray-900 dark:text-white mb-8 text-center">
+                            Que recherchez-vous ?
+                        </h2>
+                        
+                        <!-- Search Input -->
+                        <div class="relative">
+                            <input 
+                                type="text" 
+                                id="search-input"
+                                placeholder="Tapez votre recherche..." 
+                                class="w-full px-6 py-4 sm:py-6 text-lg sm:text-xl bg-white dark:bg-gray-800 border-b-2 border-gray-300 dark:border-gray-600 focus:border-red-500 dark:focus:border-red-500 outline-none transition-colors text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500"
+                                autocomplete="off"
+                            />
+                            <div class="absolute right-4 top-1/2 -translate-y-1/2">
+                                <svg class="w-6 h-6 sm:w-8 sm:h-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                                </svg>
+                            </div>
+                        </div>
+                        
+                        <!-- Search Suggestions -->
+                        <div class="mt-8 sm:mt-12">
+                            <p class="text-sm sm:text-base text-gray-500 dark:text-gray-400 mb-4">Suggestions populaires :</p>
+                            <div class="flex flex-wrap gap-3">
+                                <button class="px-4 py-2 bg-gray-100 dark:bg-gray-800 hover:bg-red-500 hover:text-white dark:hover:bg-red-600 rounded-full text-sm sm:text-base transition-colors text-gray-700 dark:text-gray-300">
+                                    React Native
+                                </button>
+                                <button class="px-4 py-2 bg-gray-100 dark:bg-gray-800 hover:bg-red-500 hover:text-white dark:hover:bg-red-600 rounded-full text-sm sm:text-base transition-colors text-gray-700 dark:text-gray-300">
+                                    Drupal
+                                </button>
+                                <button class="px-4 py-2 bg-gray-100 dark:bg-gray-800 hover:bg-red-500 hover:text-white dark:hover:bg-red-600 rounded-full text-sm sm:text-base transition-colors text-gray-700 dark:text-gray-300">
+                                    Transformation digitale
+                                </button>
+                                <button class="px-4 py-2 bg-gray-100 dark:bg-gray-800 hover:bg-red-500 hover:text-white dark:hover:bg-red-600 rounded-full text-sm sm:text-base transition-colors text-gray-700 dark:text-gray-300">
+                                    Applications mobiles
+                                </button>
+                                <button class="px-4 py-2 bg-gray-100 dark:bg-gray-800 hover:bg-red-500 hover:text-white dark:hover:bg-red-600 rounded-full text-sm sm:text-base transition-colors text-gray-700 dark:text-gray-300">
+                                    UX Design
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
         <main id="main-content">
         <!-- section -->
         <section id="hero" class="relative px-4 sm:px-6 py-12 sm:py-16 lg:py-20 w-full overflow-hidden" aria-label="Principales réalisations clients">
@@ -673,7 +736,7 @@
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
                         <!-- Left Column: Form -->
                         <div class="bg-white dark:bg-gray-700 p-6 sm:p-8 rounded shadow-sm transition-colors duration-300">
-                            <form id="contactForm">
+                            <form id="contactForm" novalidate>
                                 <!-- Name -->
                                 <div class="mb-4 sm:mb-6">
                                     <label class="block text-xs sm:text-sm font-bold mb-2 text-gray-900 dark:text-white" for="name">Your Name</label>
@@ -782,7 +845,7 @@
                                     </div>
                                     <div>
                                         <h4 class="font-bold mb-1 text-sm sm:text-base text-gray-900 dark:text-white">Email</h4>
-                                        <p class="text-gray-600 dark:text-gray-400 text-xs sm:text-sm">contact@void.fr</p>
+                                        <p class="text-gray-600 dark:text-gray-400 text-xs sm:text-sm"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="1c7f7372687d7f685c6a737578327a6e">[email&#160;protected]</a></p>
                                     </div>
                                 </div>
                             </div>

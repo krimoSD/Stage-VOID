@@ -1,0 +1,20 @@
+{
+  "extraPosts": [
+    {
+      "id": "chatgpt-apps-nextjs",
+      "column": 1,
+      "title": "Apps ChatGPT & Model Context Protocol : Développement avec Next.js",
+      "date": "February 11, 2026",
+      "image": "images/chatgpt-apps-void.png",
+      "alt": "Illustration d'applications ChatGPT et Next.js"
+    },
+    {
+      "id": "shopify-ecommerce-weekend",
+      "column": 2,
+      "title": "Shopify : Guide E-commerce La plateforme qui génère $14.6B de ventes en un weekend",
+      "date": "February 11, 2026",
+      "image": "images/photo-1556742049-0cfed4f6a45d.avif",
+      "alt": "Photo illustrant le e-commerce Shopify"
+    }
+  ]
+}

@@ -41,96 +41,120 @@ themeToggleBtn.addEventListener('click', function() {
 });
 
 // Slider functionality
-const slidesContainer = document.getElementById('slidesContainer');
-const dots = document.querySelectorAll('.dot');
-const prevBtn = document.getElementById('prevBtn');
-const nextBtn = document.getElementById('nextBtn');
-const totalSlides = dots.length;
-let currentSlide = 0;
-let autoplayInterval;
+document.addEventListener('DOMContentLoaded', function() {
+    const slidesContainer = document.getElementById('slidesContainer');
+    const dots = document.querySelectorAll('.dot');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const totalSlides = dots.length;
+    let currentSlide = 0;
+    let autoplayInterval;
+    let isTransitioning = false;
 
-function goToSlide(index) {
-    // Ensure index is within bounds
-    currentSlide = ((index % totalSlides) + totalSlides) % totalSlides;
-    slidesContainer.style.transform = `translateX(-${currentSlide * 100}%)`;
-    updateDots();
-}
+    function goToSlide(index) {
+        if (isTransitioning) return; // Prevent rapid clicks
+        
+        isTransitioning = true;
+        // Ensure index is within bounds
+        currentSlide = ((index % totalSlides) + totalSlides) % totalSlides;
+        slidesContainer.style.transform = `translateX(-${currentSlide * 100}%)`;
+        updateDots();
+        
+        // Reset transition lock after animation completes
+        setTimeout(() => {
+            isTransitioning = false;
+        }, 500); // Match the CSS transition duration
+    }
 
-function updateDots() {
+    function updateDots() {
+        dots.forEach((dot, index) => {
+            if (index === currentSlide) {
+                dot.classList.remove('bg-white/70', 'dark:bg-gray-300/70');
+                dot.classList.add('bg-red-500', 'dark:bg-red-600', 'scale-125');
+                dot.setAttribute('aria-pressed', 'true');
+            } else {
+                dot.classList.remove('bg-red-500', 'dark:bg-red-600', 'scale-125');
+                dot.classList.add('bg-white/70', 'dark:bg-gray-300/70');
+                dot.setAttribute('aria-pressed', 'false');
+            }
+        });
+    }
+
+    function nextSlide() {
+        goToSlide(currentSlide + 1);
+        resetAutoplay();
+    }
+
+    function prevSlide() {
+        goToSlide(currentSlide - 1);
+        resetAutoplay();
+    }
+
+    function startAutoplay() {
+        autoplayInterval = setInterval(nextSlide, 5000); // Change slide every 5 seconds
+    }
+
+    function stopAutoplay() {
+        clearInterval(autoplayInterval);
+    }
+
+    function resetAutoplay() {
+        stopAutoplay();
+        startAutoplay();
+    }
+
     dots.forEach((dot, index) => {
-        if (index === currentSlide) {
-            dot.classList.remove('bg-white/70', 'dark:bg-gray-300/70');
-            dot.classList.add('bg-red-500', 'dark:bg-red-600', 'scale-125');
-            dot.setAttribute('aria-pressed', 'true');
-        } else {
-            dot.classList.remove('bg-red-500', 'dark:bg-red-600', 'scale-125');
-            dot.classList.add('bg-white/70', 'dark:bg-gray-300/70');
-            dot.setAttribute('aria-pressed', 'false');
+        dot.addEventListener('click', () => {
+            goToSlide(index);
+            resetAutoplay();
+        });
+    });
+
+    nextBtn.addEventListener('click', nextSlide);
+    prevBtn.addEventListener('click', prevSlide);
+
+    const sliderSection = document.querySelector('#hero');
+    sliderSection.addEventListener('mouseenter', stopAutoplay);
+    sliderSection.addEventListener('mouseleave', startAutoplay);
+
+    // Only allow keyboard navigation when slider area has focus or is being interacted with
+    let sliderHasFocus = false;
+    
+    sliderSection.addEventListener('mouseenter', () => sliderHasFocus = true);
+    sliderSection.addEventListener('mouseleave', () => sliderHasFocus = false);
+    
+    document.addEventListener('keydown', (e) => {
+        if (!sliderHasFocus) return; // Only navigate if hovering over slider
+        if (e.key === 'ArrowLeft') {
+            e.preventDefault();
+            prevSlide();
+        }
+        if (e.key === 'ArrowRight') {
+            e.preventDefault();
+            nextSlide();
         }
     });
-}
 
-function nextSlide() {
-    goToSlide(currentSlide + 1);
-    resetAutoplay();
-}
+    let touchStartX = 0;
+    let touchEndX = 0;
 
-function prevSlide() {
-    goToSlide(currentSlide - 1);
-    resetAutoplay();
-}
+    slidesContainer.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+    }, { passive: true });
 
-function startAutoplay() {
-    autoplayInterval = setInterval(nextSlide, 5000); // Change slide every 5 seconds
-}
-
-function stopAutoplay() {
-    clearInterval(autoplayInterval);
-}
-
-function resetAutoplay() {
-    stopAutoplay();
-    startAutoplay();
-}
-
-dots.forEach((dot, index) => {
-    dot.addEventListener('click', () => {
-        goToSlide(index);
-        resetAutoplay();
+    slidesContainer.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
     });
+
+    function handleSwipe() {
+        if (touchEndX < touchStartX - 50) nextSlide(); // Swipe left
+        if (touchEndX > touchStartX + 50) prevSlide(); // Swipe right
+    }
+
+    // Start autoplay when page loads
+    startAutoplay();
 });
-
-nextBtn.addEventListener('click', nextSlide);
-prevBtn.addEventListener('click', prevSlide);
-
-const sliderSection = document.querySelector('section');
-sliderSection.addEventListener('mouseenter', stopAutoplay);
-sliderSection.addEventListener('mouseleave', startAutoplay);
-
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'ArrowLeft') prevSlide();
-    if (e.key === 'ArrowRight') nextSlide();
-});
-
-let touchStartX = 0;
-let touchEndX = 0;
-
-slidesContainer.addEventListener('touchstart', (e) => {
-    touchStartX = e.changedTouches[0].screenX;
-}, { passive: true });
-
-slidesContainer.addEventListener('touchend', (e) => {
-    touchEndX = e.changedTouches[0].screenX;
-    handleSwipe();
-});
-
-function handleSwipe() {
-    if (touchEndX < touchStartX - 50) nextSlide(); // Swipe left
-    if (touchEndX > touchStartX + 50) prevSlide(); // Swipe right
-}
-
-// Start autoplay when page loads
-startAutoplay();
 
 // counter animation
 function animateCounter(element) {

@@ -50,10 +50,10 @@ let currentSlide = 0;
 let autoplayInterval;
 
 function goToSlide(index) {
-    currentSlide = index;
+    // Ensure index is within bounds
+    currentSlide = ((index % totalSlides) + totalSlides) % totalSlides;
     slidesContainer.style.transform = `translateX(-${currentSlide * 100}%)`;
     updateDots();
-    resetAutoplay();
 }
 
 function updateDots() {
@@ -71,13 +71,13 @@ function updateDots() {
 }
 
 function nextSlide() {
-    currentSlide = (currentSlide + 1) % totalSlides;
-    goToSlide(currentSlide);
+    goToSlide(currentSlide + 1);
+    resetAutoplay();
 }
 
 function prevSlide() {
-    currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-    goToSlide(currentSlide);
+    goToSlide(currentSlide - 1);
+    resetAutoplay();
 }
 
 function startAutoplay() {
@@ -94,7 +94,10 @@ function resetAutoplay() {
 }
 
 dots.forEach((dot, index) => {
-    dot.addEventListener('click', () => goToSlide(index));
+    dot.addEventListener('click', () => {
+        goToSlide(index);
+        resetAutoplay();
+    });
 });
 
 nextBtn.addEventListener('click', nextSlide);

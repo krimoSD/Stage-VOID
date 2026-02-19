@@ -1,0 +1,7 @@
+{
+    "require": {
+        "league/csv": "^9.28.0",
+        "symfony/console": "^8.0",
+        "vlucas/phpdotenv": "^5.6"
+    }
+}

@@ -1,0 +1,6 @@
+movie_directory.admin:
+  title: 'movie directory setting'
+  description: 'setting up the Base URL and API key '
+  parent: system.admin_config_development
+  route_name: movie_directory.api_config_page
+  weight: 100

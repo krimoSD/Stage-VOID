@@ -1,0 +1,61 @@
+<form class="movie-search" method="get" action="">
+  <div class="movie-search__field">
+    <input
+      class="movie-search__input"
+      type="text"
+      name="q"
+      placeholder="Search for a movie..."
+      value="{{ content.search_query|default('') }}"
+    >
+  </div>
+  <button class="movie-search__button" type="submit">
+    Search
+  </button>
+</form>
+
+<div class="movie-listing">
+  {% if content.movies is not empty %}
+    {% for movie in content.movies %}
+      {{ movie }}
+    {% endfor %}
+  {% else %}
+    <p class="movie-listing__empty">
+      No movies found{% if content.search_query is defined and content.search_query %} for “{{ content.search_query }}”{% endif %}. Try another title.
+    </p>
+  {% endif %}
+</div>
+
+{% if content.pagination is defined and (content.pagination.has_previous or content.pagination.has_next) %}
+  <nav class="movie-pagination" aria-label="Movie pagination">
+    <div class="movie-pagination__info">
+      Page {{ content.pagination.current }} of {{ content.pagination.total_pages }}
+    </div>
+    <div class="movie-pagination__controls">
+      {% if content.pagination.has_previous %}
+        <a
+          class="movie-pagination__button movie-pagination__button--secondary"
+          href="?page={{ content.pagination.current - 1 }}{% if content.search_query is defined and content.search_query %}&q={{ content.search_query|url_encode }}{% endif %}"
+        >
+          ‹ Previous
+        </a>
+      {% else %}
+        <span class="movie-pagination__button movie-pagination__button--disabled">
+          ‹ Previous
+        </span>
+      {% endif %}
+
+      {% if content.pagination.has_next %}
+        <a
+          class="movie-pagination__button movie-pagination__button--primary"
+          href="?page={{ content.pagination.current + 1 }}{% if content.search_query is defined and content.search_query %}&q={{ content.search_query|url_encode }}{% endif %}"
+        >
+          Next ›
+        </a>
+      {% else %}
+        <span class="movie-pagination__button movie-pagination__button--disabled">
+          Next ›
+        </span>
+      {% endif %}
+    </div>
+  </nav>
+{% endif %}

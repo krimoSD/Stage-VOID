@@ -1,0 +1,4 @@
+services:
+  movie_directory.api_connector:
+    class: Drupal\movie_directory\movieAPIConnector
+    arguments: ['@http_client_factory']

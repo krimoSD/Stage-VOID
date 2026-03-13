@@ -1,0 +1,7 @@
+caching.api_articles:
+  path: '/api/articles'
+  defaults:
+    _controller: '\Drupal\caching\Controller\ArticlesController::getArticles'
+    _title: 'Articles API'
+  requirements:
+    _permission: 'access content'

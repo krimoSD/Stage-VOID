@@ -1,0 +1,15 @@
+langcode: en
+status: true
+id: appointment.status
+field_name: status
+entity_type: appointment
+type: list_string
+settings:
+  allowed_values:
+    - value: pending
+      label: Pending
+    - value: confirmed
+      label: Confirmed
+    - value: cancelled
+      label: Cancelled
+cardinality: 1

@@ -1,0 +1,59 @@
+<?php
+
+/**
+ * Implements hook_schema().
+ * Drupal auto-generates the schema from baseFieldDefinitions,
+ * but you can define it explicitly for clarity.
+ */
+function appointment_schema(): array {
+  // Drupal's ContentEntityBase handles table creation automatically
+  // via the entity type annotation + baseFieldDefinitions.
+  // You only need this file for update hooks.
+  return [];
+}
+
+/**
+ * NOTE:
+ * A previous example update hook added a 'reference_code' field storage. That
+ * field is not part of the Appointment entity definition, so Drupal reports a
+ * mismatch and asks to uninstall it.
+ */
+function appointment_update_11001(): void {
+  // Intentionally left empty.
+}
+
+/**
+ * Remove leftover reference_code field storage.
+ */
+function appointment_update_11002(): void {
+  $manager = \Drupal::entityDefinitionUpdateManager();
+  $definition = $manager->getFieldStorageDefinition('reference_code', 'appointment');
+  if ($definition) {
+    $manager->uninstallFieldStorageDefinition($definition);
+  }
+}
+
+/**
+ * Ensure appointment base fields are installed (appointment_type, reference).
+ */
+function appointment_update_11003(): void {
+  $manager = \Drupal::entityDefinitionUpdateManager();
+
+  // Install missing storage for the appointment_type base field.
+  if (!$manager->getFieldStorageDefinition('appointment_type', 'appointment')) {
+    $entity_type = $manager->getEntityType('appointment');
+    $base_fields = \Drupal\appointment\Entity\AppointmentEntity::baseFieldDefinitions($entity_type);
+    if (isset($base_fields['appointment_type'])) {
+      $manager->installFieldStorageDefinition('appointment_type', 'appointment', 'appointment', $base_fields['appointment_type']);
+    }
+  }
+
+  // Install missing storage for the reference base field.
+  if (!$manager->getFieldStorageDefinition('reference', 'appointment')) {
+    $entity_type = $manager->getEntityType('appointment');
+    $base_fields = \Drupal\appointment\Entity\AppointmentEntity::baseFieldDefinitions($entity_type);
+    if (isset($base_fields['reference'])) {
+      $manager->installFieldStorageDefinition('reference', 'appointment', 'appointment', $base_fields['reference']);
+    }
+  }
+}

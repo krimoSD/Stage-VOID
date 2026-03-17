@@ -1,0 +1,100 @@
+<?php
+
+/**
+ * Implements hook_entity_type_build().
+ * Already handled by the annotation above, but you
+ * can add alter hooks here if needed.
+ */
+
+use Drupal\Core\Entity\EntityTypeInterface;
+use Drupal\Core\Mail\MailInterface;
+use Drupal\Core\StringTranslation\StringTranslationTrait;
+
+use Drupal\appointment\Entity\AppointmentEntity;
+
+/**
+ * Implements hook_mail().
+ */
+function appointment_mail($key, &$message, $params) {
+  switch ($key) {
+    case 'booking_confirmation':
+      /** @var \Drupal\appointment\Entity\AppointmentEntity $appointment */
+      $appointment = $params['appointment'];
+      $reference = $params['reference'] ?? $appointment->id();
+
+      $date = $appointment->get('appointment_date')->value;
+
+      $message['subject'] = t('Confirmation de votre rendez-vous (@ref)', ['@ref' => $reference]);
+      $message['body'][] = t('Bonjour @name,', ['@name' => $appointment->get('customer_name')->value]);
+      $message['body'][] = '';
+      $message['body'][] = t('Votre rendez-vous a bien été enregistré avec la référence @ref.', ['@ref' => $reference]);
+      $message['body'][] = t('Date et heure (UTC) : @date', ['@date' => $date]);
+      $message['body'][] = '';
+      $message['body'][] = t('Merci.');
+      break;
+
+    case 'booking_modified':
+      /** @var \Drupal\appointment\Entity\AppointmentEntity $appointment */
+      $appointment = $params['appointment'];
+      $reference = $params['reference'] ?? $appointment->id();
+      $date = $appointment->get('appointment_date')->value;
+
+      $message['subject'] = t('Modification de votre rendez-vous (@ref)', ['@ref' => $reference]);
+      $message['body'][] = t('Bonjour @name,', ['@name' => $appointment->get('customer_name')->value]);
+      $message['body'][] = '';
+      $message['body'][] = t('Votre rendez-vous a été modifié. Référence : @ref.', ['@ref' => $reference]);
+      $message['body'][] = t('Nouvelle date et heure (UTC) : @date', ['@date' => $date]);
+      $message['body'][] = '';
+      $message['body'][] = t('Merci.');
+      break;
+
+    case 'booking_cancelled':
+      /** @var \Drupal\appointment\Entity\AppointmentEntity $appointment */
+      $appointment = $params['appointment'];
+      $reference = $params['reference'] ?? $appointment->id();
+      $date = $appointment->get('appointment_date')->value;
+
+      $message['subject'] = t('Annulation de votre rendez-vous (@ref)', ['@ref' => $reference]);
+      $message['body'][] = t('Bonjour @name,', ['@name' => $appointment->get('customer_name')->value]);
+      $message['body'][] = '';
+      $message['body'][] = t('Votre rendez-vous a été annulé. Référence : @ref.', ['@ref' => $reference]);
+      $message['body'][] = t('Créneau initial (UTC) : @date', ['@date' => $date]);
+      $message['body'][] = '';
+      $message['body'][] = t('Merci.');
+      break;
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function appointment_theme($existing, $type, $theme, $path): array {
+  return [
+    'appointment_booking_form' => [
+      'render element' => 'form',
+      'template' => 'appointment-booking-form',
+      'path' => $path . '/templates',
+    ],
+    'appointment_modify_form' => [
+      'render element' => 'form',
+      'template' => 'appointment-modify-form',
+      'path' => $path . '/templates',
+    ],
+  ];
+}
+
+/**
+ * Implements hook_entity_base_field_info_alter().
+ * Use this to add extra validation constraints.
+ */
+function appointment_entity_base_field_info_alter(&$fields, EntityTypeInterface $entity_type) {
+  if ($entity_type->id() === 'appointment') {
+    // Example: add phone format constraint
+    if (isset($fields['customer_phone'])) {
+      $fields['customer_phone']->addConstraint('Regex', [
+        'pattern' => '/^(06|07)\d{8}$/',
+        'message' => t('Phone must be a valid Moroccan number (06/07XXXXXXXX).'),
+      ]);
+    }
+  }
+}

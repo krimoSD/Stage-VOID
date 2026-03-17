@@ -1,0 +1,10 @@
+booking_form:
+  css:
+    theme:
+      css/booking-form.css: {}
+  js:
+    js/booking-form.js: {}
+  dependencies:
+    - core/drupal
+    - core/once
+

@@ -1,0 +1,47 @@
+appointment.booking_step:
+  path: '/prendre-un-rendez-vous'
+  defaults:
+    _form: '\Drupal\appointment\Form\BookingForm'
+    _title: 'Prendre un rendez-vous'
+  requirements:
+    _permission: 'access content'
+
+appointment.booking_manage:
+  path: '/mes-rendez-vous'
+  defaults:
+    _controller: '\Drupal\appointment\Controller\BookingController::userAppointments'
+    _title: 'Mes rendez-vous'
+  requirements:
+    _permission: 'access content'
+
+appointment.admin_appointments:
+  path: '/admin/structure/appointments'
+  defaults:
+    _controller: '\Drupal\appointment\Controller\AdminAppointmentController::list'
+    _title: 'Rendez-vous'
+  requirements:
+    _permission: 'administer appointments'
+
+appointment.manage_lookup:
+  path: '/modifier-un-rendez-vous'
+  defaults:
+    _controller: '\Drupal\appointment\Controller\AppointmentManagementController::lookup'
+    _title: 'Modifier un rendez-vous'
+  requirements:
+    _permission: 'access content'
+
+appointment.manage_modify:
+  path: '/modifier-un-rendez-vous/{appointment}'
+  defaults:
+    _controller: '\Drupal\appointment\Controller\AppointmentManagementController::modify'
+    _title: 'Modifier le rendez-vous'
+  requirements:
+    _entity_access: 'appointment.update'
+
+appointment.manage_cancel:
+  path: '/annuler-un-rendez-vous/{appointment}'
+  defaults:
+    _controller: '\Drupal\appointment\Controller\AppointmentManagementController::cancel'
+    _title: 'Annuler le rendez-vous'
+  requirements:
+    _entity_access: 'appointment.update'

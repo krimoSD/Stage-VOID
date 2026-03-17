@@ -1,5 +1,0 @@
-administer appointments:
-  title: 'Administer appointments'
-  description: 'Manage all appointments and agency data.'
-  restrict access: true
-

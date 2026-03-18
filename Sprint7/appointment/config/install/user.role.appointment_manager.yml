@@ -1,0 +1,11 @@
+langcode: en
+status: true
+dependencies: {  }
+id: appointment_manager
+label: 'Appointment manager'
+weight: 3
+is_admin: false
+permissions:
+  - 'access content'
+  - 'administer appointments'
+

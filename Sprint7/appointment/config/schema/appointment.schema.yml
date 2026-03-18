@@ -1,0 +1,14 @@
+appointment.settings:
+  type: config_object
+  label: 'Appointment settings'
+  mapping:
+    slot_minutes:
+      type: integer
+      label: 'Slot duration (minutes)'
+    day_start:
+      type: string
+      label: 'Default working day start (HH:MM)'
+    day_end:
+      type: string
+      label: 'Default working day end (HH:MM)'
+

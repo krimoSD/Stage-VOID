@@ -1,0 +1,42 @@
+appointment.booking_step:
+  title: 'Prendre un rendez-vous'
+  description: 'Réserver un rendez-vous avec un conseiller.'
+  route_name: appointment.booking_step
+  menu_name: main
+  weight: 0
+
+appointment.admin_dashboard:
+  title: 'Rendez-vous'
+  description: 'Gérer tous les rendez-vous.'
+  route_name: appointment.admin_dashboard
+  parent: system.admin_structure
+  weight: 0
+
+appointment.settings:
+  title: 'Appointment settings'
+  description: 'Configure booking rules and time slots.'
+  route_name: appointment.settings
+  parent: system.admin_config
+  weight: 10
+
+appointment.manage_lookup:
+  title: 'Modifier un rendez-vous'
+  description: 'Modifier ou annuler un rendez-vous existant.'
+  route_name: appointment.manage_lookup
+  menu_name: main
+  weight: 1
+
+entity.agency.collection:
+  title: 'Agences'
+  description: 'Gérer les agences de rendez-vous.'
+  route_name: entity.agency.collection
+  parent: system.admin_structure
+  weight: 1
+
+appointment.admin_advisers:
+  title: 'Conseillers'
+  description: 'Gérer les conseillers (agence, spécialités, horaires).'
+  route_name: appointment.admin_advisers
+  parent: system.admin_structure
+  weight: 2
+

@@ -1,0 +1,8 @@
+langcode: en
+status: true
+dependencies: {  }
+name: 'Appointment types'
+vid: appointment_type
+description: 'Types/specializations of appointments.'
+weight: 0
+

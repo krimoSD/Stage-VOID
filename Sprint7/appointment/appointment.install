@@ -1,0 +1,260 @@
+<?php
+
+/**
+ * Implements hook_schema().
+ * Drupal auto-generates the schema from baseFieldDefinitions,
+ * but you can define it explicitly for clarity.
+ */
+function appointment_schema(): array {
+  // Drupal's ContentEntityBase handles table creation automatically
+  // via the entity type annotation + baseFieldDefinitions.
+  // You only need this file for update hooks.
+  return [];
+}
+
+/**
+ * Implements hook_install().
+ */
+function appointment_install(): void {
+  // 1) Ensure adviser fields are visible on the user edit form and view.
+  try {
+    /** @var \Drupal\Core\Entity\EntityDisplayRepositoryInterface $display_repo */
+    $display_repo = \Drupal::service('entity_display.repository');
+
+    $form_display = $display_repo->getFormDisplay('user', 'user', 'default');
+    $form_display->setComponent('field_agency', [
+      'type' => 'entity_reference_autocomplete',
+      'weight' => 20,
+      'settings' => [
+        'match_operator' => 'CONTAINS',
+        'size' => 60,
+        'autocomplete_type' => 'tags',
+        'placeholder' => '',
+      ],
+    ]);
+    $form_display->setComponent('field_specializations', [
+      'type' => 'entity_reference_autocomplete_tags',
+      'weight' => 21,
+      'settings' => [
+        'match_operator' => 'CONTAINS',
+        'size' => 60,
+        'placeholder' => '',
+      ],
+    ]);
+    $form_display->setComponent('field_workday_start', [
+      'type' => 'string_textfield',
+      'weight' => 22,
+      'settings' => ['size' => 10, 'placeholder' => '09:00'],
+    ]);
+    $form_display->setComponent('field_workday_end', [
+      'type' => 'string_textfield',
+      'weight' => 23,
+      'settings' => ['size' => 10, 'placeholder' => '17:00'],
+    ]);
+    $form_display->save();
+
+    $view_display = $display_repo->getViewDisplay('user', 'user', 'default');
+    $view_display->setComponent('field_agency', ['type' => 'entity_reference_label', 'weight' => 20, 'label' => 'above']);
+    $view_display->setComponent('field_specializations', ['type' => 'entity_reference_label', 'weight' => 21, 'label' => 'above']);
+    $view_display->setComponent('field_workday_start', ['type' => 'string', 'weight' => 22, 'label' => 'above']);
+    $view_display->setComponent('field_workday_end', ['type' => 'string', 'weight' => 23, 'label' => 'above']);
+    $view_display->save();
+  }
+  catch (\Throwable $e) {
+    // If the host project customizes user displays heavily, don't block install.
+    \Drupal::logger('appointment')->warning('Unable to update user displays on install: @m', ['@m' => $e->getMessage()]);
+  }
+
+  // 2) Seed taxonomy terms for appointment types (if none exist).
+  try {
+    $term_storage = \Drupal::entityTypeManager()->getStorage('taxonomy_term');
+    $existing = $term_storage->getQuery()
+      ->condition('vid', 'appointment_type')
+      ->accessCheck(FALSE)
+      ->range(0, 1)
+      ->execute();
+    if (!$existing) {
+      foreach ([
+        'Conseil financier',
+        'Conseil juridique',
+        'Assistance logement',
+      ] as $label) {
+        $term = $term_storage->create([
+          'vid' => 'appointment_type',
+          'name' => $label,
+        ]);
+        $term->save();
+      }
+    }
+  }
+  catch (\Throwable $e) {
+    \Drupal::logger('appointment')->warning('Unable to seed appointment types on install: @m', ['@m' => $e->getMessage()]);
+  }
+
+  // 3) Seed at least one agency (so Step 1 works immediately).
+  try {
+    $agency_storage = \Drupal::entityTypeManager()->getStorage('agency');
+    $existing = $agency_storage->getQuery()
+      ->accessCheck(FALSE)
+      ->range(0, 1)
+      ->execute();
+    if (!$existing) {
+      $agency = $agency_storage->create([
+        'name' => 'Agence principale',
+        'address' => "123 Avenue Principale\nCasablanca",
+        'contact_info' => '05 00 00 00 00',
+        'operating_hours' => 'Lun–Ven 09:00–17:00',
+      ]);
+      $agency->save();
+    }
+  }
+  catch (\Throwable $e) {
+    \Drupal::logger('appointment')->warning('Unable to seed agencies on install: @m', ['@m' => $e->getMessage()]);
+  }
+}
+
+/**
+ * NOTE:
+ * A previous example update hook added a 'reference_code' field storage. That
+ * field is not part of the Appointment entity definition, so Drupal reports a
+ * mismatch and asks to uninstall it.
+ */
+function appointment_update_11001(): void {
+  // Intentionally left empty.
+}
+
+/**
+ * Remove leftover reference_code field storage.
+ */
+function appointment_update_11002(): void {
+  $manager = \Drupal::entityDefinitionUpdateManager();
+  $definition = $manager->getFieldStorageDefinition('reference_code', 'appointment');
+  if ($definition) {
+    $manager->uninstallFieldStorageDefinition($definition);
+  }
+}
+
+/**
+ * Ensure appointment base fields are installed (appointment_type, reference).
+ */
+function appointment_update_11003(): void {
+  $manager = \Drupal::entityDefinitionUpdateManager();
+
+  // Install missing storage for the appointment_type base field.
+  if (!$manager->getFieldStorageDefinition('appointment_type', 'appointment')) {
+    $entity_type = $manager->getEntityType('appointment');
+    $base_fields = \Drupal\appointment\Entity\AppointmentEntity::baseFieldDefinitions($entity_type);
+    if (isset($base_fields['appointment_type'])) {
+      $manager->installFieldStorageDefinition('appointment_type', 'appointment', 'appointment', $base_fields['appointment_type']);
+    }
+  }
+
+  // Install missing storage for the reference base field.
+  if (!$manager->getFieldStorageDefinition('reference', 'appointment')) {
+    $entity_type = $manager->getEntityType('appointment');
+    $base_fields = \Drupal\appointment\Entity\AppointmentEntity::baseFieldDefinitions($entity_type);
+    if (isset($base_fields['reference'])) {
+      $manager->installFieldStorageDefinition('reference', 'appointment', 'appointment', $base_fields['reference']);
+    }
+  }
+}
+
+/**
+ * Add adviser fields on user: agency, specializations, working hours.
+ */
+function appointment_update_11004(): void {
+  $entity_field_manager = \Drupal::service('entity_field.manager');
+
+  // Create field storages if missing.
+  $storages = $entity_field_manager->getFieldStorageDefinitions('user');
+
+  // field_agency: user -> agency.
+  if (!isset($storages['field_agency'])) {
+    $storage = \Drupal\field\Entity\FieldStorageConfig::create([
+      'field_name' => 'field_agency',
+      'entity_type' => 'user',
+      'type' => 'entity_reference',
+      'settings' => ['target_type' => 'agency'],
+      'cardinality' => 1,
+    ]);
+    $storage->save();
+  }
+
+  // field_specializations: user -> taxonomy_term (appointment_type).
+  if (!isset($storages['field_specializations'])) {
+    $storage = \Drupal\field\Entity\FieldStorageConfig::create([
+      'field_name' => 'field_specializations',
+      'entity_type' => 'user',
+      'type' => 'entity_reference',
+      'settings' => [
+        'target_type' => 'taxonomy_term',
+      ],
+      'cardinality' => -1,
+    ]);
+    $storage->save();
+  }
+
+  // field_workday_start / field_workday_end as HH:MM strings.
+  if (!isset($storages['field_workday_start'])) {
+    $storage = \Drupal\field\Entity\FieldStorageConfig::create([
+      'field_name' => 'field_workday_start',
+      'entity_type' => 'user',
+      'type' => 'string',
+      'settings' => ['max_length' => 5],
+      'cardinality' => 1,
+    ]);
+    $storage->save();
+  }
+  if (!isset($storages['field_workday_end'])) {
+    $storage = \Drupal\field\Entity\FieldStorageConfig::create([
+      'field_name' => 'field_workday_end',
+      'entity_type' => 'user',
+      'type' => 'string',
+      'settings' => ['max_length' => 5],
+      'cardinality' => 1,
+    ]);
+    $storage->save();
+  }
+
+  // Attach fields to the "user" bundle.
+  $bundles = $entity_field_manager->getFieldDefinitions('user', 'user');
+  $add_field = function (string $field_name, string $label, array $settings = [], bool $required = FALSE) use ($bundles) {
+    if (!isset($bundles[$field_name])) {
+      $field = \Drupal\field\Entity\FieldConfig::create([
+        'field_name' => $field_name,
+        'entity_type' => 'user',
+        'bundle' => 'user',
+        'label' => $label,
+        'required' => $required,
+        'settings' => $settings,
+      ]);
+      $field->save();
+    }
+  };
+
+  $add_field('field_agency', 'Agency');
+  $add_field('field_specializations', 'Specializations', [
+    'handler' => 'default:taxonomy_term',
+    'handler_settings' => [
+      'target_bundles' => ['appointment_type' => 'appointment_type'],
+    ],
+  ], TRUE);
+  $add_field('field_workday_start', 'Working day start (HH:MM)');
+  $add_field('field_workday_end', 'Working day end (HH:MM)');
+}
+
+/**
+ * Install appointment duration field storage.
+ */
+function appointment_update_11005(): void {
+  $manager = \Drupal::entityDefinitionUpdateManager();
+  if ($manager->getFieldStorageDefinition('duration_minutes', 'appointment')) {
+    return;
+  }
+
+  $entity_type = $manager->getEntityType('appointment');
+  $base_fields = \Drupal\appointment\Entity\AppointmentEntity::baseFieldDefinitions($entity_type);
+  if (isset($base_fields['duration_minutes'])) {
+    $manager->installFieldStorageDefinition('duration_minutes', 'appointment', 'appointment', $base_fields['duration_minutes']);
+  }
+}

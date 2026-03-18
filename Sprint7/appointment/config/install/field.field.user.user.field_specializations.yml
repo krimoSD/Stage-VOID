@@ -1,0 +1,26 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.user.field_specializations
+    - taxonomy.vocabulary.appointment_type
+  module:
+    - user
+    - taxonomy
+id: user.user.field_specializations
+field_name: field_specializations
+entity_type: user
+bundle: user
+label: Specializations
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      appointment_type: appointment_type
+field_type: entity_reference
+

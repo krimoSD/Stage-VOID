@@ -1,0 +1,78 @@
+appointment.booking_step:
+  path: '/prendre-un-rendez-vous'
+  defaults:
+    _form: '\Drupal\appointment\Form\BookingForm'
+    _title: 'Prendre un rendez-vous'
+  requirements:
+    _permission: 'access content'
+
+appointment.booking_manage:
+  path: '/mes-rendez-vous'
+  defaults:
+    _controller: '\Drupal\appointment\Controller\BookingController::userAppointments'
+    _title: 'Mes rendez-vous'
+  requirements:
+    _permission: 'access content'
+
+appointment.admin_dashboard:
+  path: '/admin/structure/appointment'
+  defaults:
+    _form: '\Drupal\appointment\Form\AdminAppointmentsForm'
+    _title: 'Rendez-vous'
+  requirements:
+    _permission: 'administer appointments'
+
+appointment.admin_export_download:
+  path: '/admin/structure/appointment/export/{token}'
+  defaults:
+    _controller: '\Drupal\appointment\Controller\AdminExportDownloadController::download'
+    _title: 'Télécharger export'
+  requirements:
+    _permission: 'administer appointments'
+
+appointment.admin_advisers:
+  path: '/admin/structure/advisers'
+  defaults:
+    _controller: '\Drupal\appointment\Controller\AdviserAdminController::list'
+    _title: 'Conseillers'
+  requirements:
+    _permission: 'administer appointments'
+
+appointment.settings:
+  path: '/admin/config/appointment/settings'
+  defaults:
+    _form: '\Drupal\appointment\Form\AppointmentSettingsForm'
+    _title: 'Appointment settings'
+  requirements:
+    _permission: 'administer appointments'
+
+appointment.manage_lookup:
+  path: '/modifier-un-rendez-vous'
+  defaults:
+    _controller: '\Drupal\appointment\Controller\AppointmentManagementController::lookup'
+    _title: 'Modifier un rendez-vous'
+  requirements:
+    _permission: 'access content'
+
+appointment.manage_modify:
+  path: '/modifier-un-rendez-vous/{appointment}'
+  defaults:
+    _controller: '\Drupal\appointment\Controller\AppointmentManagementController::modify'
+    _title: 'Modifier le rendez-vous'
+  requirements:
+    _entity_access: 'appointment.update'
+
+appointment.manage_cancel:
+  path: '/annuler-un-rendez-vous/{appointment}'
+  defaults:
+    _controller: '\Drupal\appointment\Controller\AppointmentManagementController::cancel'
+    _title: 'Annuler le rendez-vous'
+  requirements:
+    _entity_access: 'appointment.delete'
+
+appointment.fullcalendar_events:
+  path: '/appointment/fullcalendar/events/{adviser}'
+  defaults:
+    _controller: '\Drupal\appointment\Controller\FullCalendarController::events'
+  requirements:
+    _permission: 'access content'

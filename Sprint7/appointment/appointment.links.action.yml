@@ -1,6 +1,0 @@
-entity.agency.add_form:
-  route_name: entity.agency.add_form
-  title: 'Add agency'
-  appears_on:
-    - entity.agency.collection
-

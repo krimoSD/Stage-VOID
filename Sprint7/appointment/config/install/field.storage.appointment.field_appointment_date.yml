@@ -1,9 +1,0 @@
-langcode: en
-status: true
-id: appointment.appointment_date
-field_name: appointment_date
-entity_type: appointment
-type: datetime
-settings:
-  datetime_type: datetime
-cardinality: 1

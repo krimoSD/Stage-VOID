@@ -115,8 +115,7 @@ class AppointmentEntity extends ContentEntityBase {
     $fields['reference'] = BaseFieldDefinition::create('string')
       ->setLabel(t('Reference'))
       ->setRequired(FALSE)
-      ->setSettings(['max_length' => 32])
-      ->setDisplayOptions('form', ['type' => 'string_textfield', 'weight' => 6]);
+      ->setSettings(['max_length' => 32]);
 
     // Duration in minutes (used for overlap checks and calendar rendering).
     $fields['duration_minutes'] = BaseFieldDefinition::create('integer')

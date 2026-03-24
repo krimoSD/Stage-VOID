@@ -14,12 +14,14 @@ use Drupal\appointment\Form\AppointmentModifyForm;
 /**
  * Handles appointment modification and cancellation by users.
  */
-class AppointmentManagementController extends ControllerBase {
+class AppointmentManagementController extends ControllerBase
+{
 
   /**
    * Tempstore used to persist phone verification for anonymous users.
    */
-  protected function manageStore() {
+  protected function manageStore()
+  {
     return \Drupal::service('tempstore.private')->get('appointment_manage');
   }
 
@@ -29,41 +31,26 @@ class AppointmentManagementController extends ControllerBase {
    * All visitors (including logged-in users) must have verified phone
    * in this session, and it must match the appointment's customer phone.
    */
-  protected function canManage(AppointmentEntity $appointment): bool {
-    $verified_phone = (string) ($this->manageStore()->get('verified_phone') ?? '');
-    $customer_phone = (string) $appointment->get('customer_phone')->value;
+  protected function canManage(AppointmentEntity $appointment): bool
+  {
+    $verified_phone = (string)($this->manageStore()->get('verified_phone') ?? '');
+    $customer_phone = (string)$appointment->get('customer_phone')->value;
     return $verified_phone !== '' && $customer_phone !== '' && $verified_phone === $customer_phone;
   }
 
   /**
    * Returns the site timezone (used for display / user-entered dates).
    */
-  protected function siteTimezone(): string {
+  protected function siteTimezone(): string
+  {
     return $this->config('system.date')->get('timezone.default') ?: 'UTC';
-  }
-
-  /**
-   * Simple time slots list (can be replaced by real availability).
-   */
-  protected function getAvailableTimes(): array {
-    $slots = [
-      '09:00',
-      '10:00',
-      '11:00',
-      '14:00',
-      '15:00',
-    ];
-    $options = [];
-    foreach ($slots as $slot) {
-      $options[$slot] = $this->t('@t', ['@t' => $slot]);
-    }
-    return $options;
   }
 
   /**
    * Sends an email for appointment lifecycle events.
    */
-  protected function sendAppointmentMail(string $key, AppointmentEntity $appointment): void {
+  protected function sendAppointmentMail(string $key, AppointmentEntity $appointment): void
+  {
     /** @var \Drupal\Core\Mail\MailManagerInterface $mail_manager */
     $mail_manager = \Drupal::service('plugin.manager.mail');
     $site_mail = $this->config('system.site')->get('mail');
@@ -81,10 +68,11 @@ class AppointmentManagementController extends ControllerBase {
   /**
    * Step 1: Lookup by phone number.
    */
-  public function lookup(Request $request): array {
+  public function lookup(Request $request): array
+  {
     $results = [];
-    $destination = (string) $request->query->get('destination', '');
-    $phone = (string) $request->query->get('phone', '');
+    $destination = (string)$request->query->get('destination', '');
+    $phone = (string)$request->query->get('phone', '');
 
     if ($phone) {
       $storage = $this->entityTypeManager()->getStorage('appointment');
@@ -114,7 +102,7 @@ class AppointmentManagementController extends ControllerBase {
       '#prefix' => '<div class="appointment-user">',
       '#suffix' => '</div>',
       '#title' => $this->t('Modifier un rendez-vous'),
-      'form' => $this->formBuilder()->getForm(AppointmentPhoneVerifyForm::class, $destination),
+      'form' => $this->formBuilder()->getForm(AppointmentPhoneVerifyForm::class , $destination),
       'list' => [
         '#theme' => 'table',
         '#attributes' => ['class' => ['appointment-user__table']],
@@ -124,7 +112,7 @@ class AppointmentManagementController extends ControllerBase {
           $this->t('Actions'),
         ],
         '#rows' => array_map(function ($row) {
-          return [
+      return [
             $row['label'],
             $row['date'],
             [
@@ -138,7 +126,7 @@ class AppointmentManagementController extends ControllerBase {
               ],
             ],
           ];
-        }, $results),
+    }, $results),
         '#empty' => $phone ? $this->t('Aucun rendez-vous trouvé pour ce numéro.') : '',
       ],
     ];
@@ -147,19 +135,21 @@ class AppointmentManagementController extends ControllerBase {
   /**
    * Step 2: Modify selected appointment (date/time only for now).
    */
-  public function modify(AppointmentEntity $appointment, Request $request) {
+  public function modify(AppointmentEntity $appointment, Request $request)
+  {
     if (!$this->canManage($appointment)) {
       $this->messenger()->addError($this->t('Veuillez vérifier votre numéro de téléphone pour modifier ce rendez-vous.'));
       return $this->redirect('appointment.manage_lookup');
     }
 
-    return $this->formBuilder()->getForm(AppointmentModifyForm::class, $appointment);
+    return $this->formBuilder()->getForm(AppointmentModifyForm::class , $appointment);
   }
 
   /**
    * Step 3: Cancel appointment.
    */
-  public function cancel(AppointmentEntity $appointment, Request $request) {
+  public function cancel(AppointmentEntity $appointment, Request $request)
+  {
     if (!$this->canManage($appointment)) {
       $this->messenger()->addError($this->t('Veuillez vérifier votre numéro de téléphone pour supprimer ce rendez-vous.'));
       return $this->redirect('appointment.manage_lookup');
@@ -211,4 +201,3 @@ class AppointmentManagementController extends ControllerBase {
   }
 
 }
-

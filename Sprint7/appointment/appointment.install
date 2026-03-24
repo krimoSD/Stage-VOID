@@ -3,12 +3,11 @@
 /**
  * Implements hook_schema().
  * Drupal auto-generates the schema from baseFieldDefinitions,
- * but you can define it explicitly for clarity.
  */
 function appointment_schema(): array {
   // Drupal's ContentEntityBase handles table creation automatically
   // via the entity type annotation + baseFieldDefinitions.
-  // You only need this file for update hooks.
+  // You  need this file for update hooks.
   return [];
 }
 
@@ -110,6 +109,90 @@ function appointment_install(): void {
   }
   catch (\Throwable $e) {
     \Drupal::logger('appointment')->warning('Unable to seed agencies on install: @m', ['@m' => $e->getMessage()]);
+  }
+
+  // 4) Create 3 demo advisers (enabled) if they don't exist already.
+  try {
+    $user_storage = \Drupal::entityTypeManager()->getStorage('user');
+    $agency_storage = \Drupal::entityTypeManager()->getStorage('agency');
+    $term_storage = \Drupal::entityTypeManager()->getStorage('taxonomy_term');
+
+    $agency_ids = $agency_storage->getQuery()
+      ->accessCheck(FALSE)
+      ->sort('id', 'ASC')
+      ->range(0, 1)
+      ->execute();
+    $agency_id = $agency_ids ? (int) reset($agency_ids) : 0;
+
+    $type_ids = $term_storage->getQuery()
+      ->condition('vid', 'appointment_type')
+      ->accessCheck(FALSE)
+      ->execute();
+    $type_ids = array_values(array_map('intval', $type_ids ?: []));
+
+    $demo = [
+      [
+        'name' => 'adviser_demo_1',
+        'mail' => 'adviser1@example.com',
+        'label' => 'Demo Adviser 1',
+        'start' => '08:00',
+        'end' => '15:00',
+      ],
+      [
+        'name' => 'adviser_demo_2',
+        'mail' => 'adviser2@example.com',
+        'label' => 'Demo Adviser 2',
+        'start' => '09:00',
+        'end' => '17:00',
+      ],
+      [
+        'name' => 'adviser_demo_3',
+        'mail' => 'adviser3@example.com',
+        'label' => 'Demo Adviser 3',
+        'start' => '10:00',
+        'end' => '18:00',
+      ],
+    ];
+
+    foreach ($demo as $d) {
+      // Skip if user with same email already exists.
+      $exists = $user_storage->getQuery()
+        ->condition('mail', $d['mail'])
+        ->accessCheck(FALSE)
+        ->range(0, 1)
+        ->execute();
+      if ($exists) {
+        continue;
+      }
+
+      /** @var \Drupal\user\UserInterface $user */
+      $user = $user_storage->create([
+        'name' => $d['name'],
+        'mail' => $d['mail'],
+        'status' => 1,
+      ]);
+      $user->addRole('adviser');
+      // Random password; admins can reset as needed.
+      $user->setPassword(bin2hex(random_bytes(8)));
+
+      if ($agency_id > 0 && $user->hasField('field_agency')) {
+        $user->set('field_agency', ['target_id' => $agency_id]);
+      }
+      if ($type_ids && $user->hasField('field_specializations')) {
+        $user->set('field_specializations', array_map(fn ($tid) => ['target_id' => $tid], $type_ids));
+      }
+      if ($user->hasField('field_workday_start')) {
+        $user->set('field_workday_start', $d['start']);
+      }
+      if ($user->hasField('field_workday_end')) {
+        $user->set('field_workday_end', $d['end']);
+      }
+
+      $user->save();
+    }
+  }
+  catch (\Throwable $e) {
+    \Drupal::logger('appointment')->warning('Unable to create demo advisers on install: @m', ['@m' => $e->getMessage()]);
   }
 }
 

@@ -170,11 +170,5 @@ If you see SMTP “connection refused”, configure Drupal’s mail system for y
 - Agencies: `/admin/structure/agencies`
 - Settings: `/admin/config/appointment/settings`
 
----
 
-## Development notes
-
-- **Timezone**: appointment datetimes are stored in UTC and displayed in the **site timezone**.
-- **Security**: entity queries use `accessCheck(TRUE)` where appropriate, and output is escaped for markup.
-- **No Git repo**: this workspace isn’t a git repository (by your current setup), so consider initializing one if you want versioning.
 

@@ -2,12 +2,9 @@
 
 /**
  * Implements hook_schema().
- * Drupal auto-generates the schema from baseFieldDefinitions,
  */
 function appointment_schema(): array {
-  // Drupal's ContentEntityBase handles table creation automatically
-  // via the entity type annotation + baseFieldDefinitions.
-  // You  need this file for update hooks.
+  // ContentEntity schema is generated from entity definitions.
   return [];
 }
 
@@ -194,16 +191,6 @@ function appointment_install(): void {
   catch (\Throwable $e) {
     \Drupal::logger('appointment')->warning('Unable to create demo advisers on install: @m', ['@m' => $e->getMessage()]);
   }
-}
-
-/**
- * NOTE:
- * A previous example update hook added a 'reference_code' field storage. That
- * field is not part of the Appointment entity definition, so Drupal reports a
- * mismatch and asks to uninstall it.
- */
-function appointment_update_11001(): void {
-  // Intentionally left empty.
 }
 
 /**

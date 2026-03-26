@@ -9,6 +9,7 @@ use Drupal\Core\Url;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Drupal\appointment\Form\AppointmentPhoneVerifyForm;
+use Drupal\appointment\Form\AppointmentCancelForm;
 use Drupal\appointment\Form\AppointmentModifyForm;
 
 /**
@@ -33,9 +34,23 @@ class AppointmentManagementController extends ControllerBase
    */
   protected function canManage(AppointmentEntity $appointment): bool
   {
-    $verified_phone = (string)($this->manageStore()->get('verified_phone') ?? '');
-    $customer_phone = (string)$appointment->get('customer_phone')->value;
-    return $verified_phone !== '' && $customer_phone !== '' && $verified_phone === $customer_phone;
+    $verified_phone = trim((string)($this->manageStore()->get('verified_phone') ?? ''));
+    if ($verified_phone === '' || !$appointment->hasField('customer_phone')) {
+      return FALSE;
+    }
+
+    $customer_phone = trim((string)($appointment->get('customer_phone')->value ?? ''));
+    if ($customer_phone === '' || !hash_equals($verified_phone, $customer_phone)) {
+      return FALSE;
+    }
+
+    // Strict check: the ID must be in the allowed whitelist from the session.
+    $allowed_ids = $this->manageStore()->get('allowed_appointment_ids');
+    if (!is_array($allowed_ids) || !in_array((int)$appointment->id(), array_map('intval', $allowed_ids), TRUE)) {
+      return FALSE;
+    }
+
+    return TRUE;
   }
 
   /**
@@ -73,8 +88,10 @@ class AppointmentManagementController extends ControllerBase
     $results = [];
     $destination = (string)$request->query->get('destination', '');
     $phone = (string)$request->query->get('phone', '');
+    $verified_phone = trim((string)($this->manageStore()->get('verified_phone') ?? ''));
+    $can_load_list = $phone !== '' && $verified_phone !== '' && hash_equals($verified_phone, trim($phone));
 
-    if ($phone) {
+    if ($can_load_list) {
       $storage = $this->entityTypeManager()->getStorage('appointment');
       $ids = $storage->getQuery()
         ->condition('customer_phone', $phone)
@@ -93,6 +110,13 @@ class AppointmentManagementController extends ControllerBase
           'cancel_url' => Url::fromRoute('appointment.manage_cancel', ['appointment' => $appointment->id()])->toString(),
         ];
       }
+    }
+
+    $empty_message = '';
+    if ($phone !== '') {
+      $empty_message = $can_load_list
+        ? $this->t('Aucun rendez-vous trouvé pour ce numéro.')
+        : $this->t('Veuillez vérifier votre numéro de téléphone.');
     }
 
     return [
@@ -127,7 +151,7 @@ class AppointmentManagementController extends ControllerBase
             ],
           ];
     }, $results),
-        '#empty' => $phone ? $this->t('Aucun rendez-vous trouvé pour ce numéro.') : '',
+        '#empty' => $empty_message,
       ],
     ];
   }
@@ -148,56 +172,13 @@ class AppointmentManagementController extends ControllerBase
   /**
    * Step 3: Cancel appointment.
    */
-  public function cancel(AppointmentEntity $appointment, Request $request)
+  public function cancel(AppointmentEntity $appointment)
   {
     if (!$this->canManage($appointment)) {
       $this->messenger()->addError($this->t('Veuillez vérifier votre numéro de téléphone pour supprimer ce rendez-vous.'));
       return $this->redirect('appointment.manage_lookup');
     }
-
-    if ($request->getMethod() === 'POST') {
-      // Send the email before deleting, since the entity will no longer exist.
-      $this->sendAppointmentMail('booking_cancelled', $appointment);
-      $appointment->set('status', 'cancelled');
-      $appointment->save();
-      $this->messenger()->addStatus($this->t('Votre rendez-vous a été supprimé.'));
-      return $this->redirect('appointment.booking_manage');
-    }
-
-    $site_tz = $this->siteTimezone();
-    $date = new DrupalDateTime($appointment->get('appointment_date')->value, new \DateTimeZone('UTC'));
-    $date->setTimezone(new \DateTimeZone($site_tz));
-
-    return [
-      '#attached' => [
-        'library' => ['appointment/booking_form'],
-      ],
-      '#prefix' => '<div class="appointment-user">',
-      '#suffix' => '</div>',
-      '#title' => $this->t('Annuler le rendez-vous'),
-      'summary' => [
-        '#markup' => $this->t('Rendez-vous le @date.', [
-          '@date' => $date->format('d/m/Y H:i'),
-        ]),
-      ],
-      'form' => [
-        '#type' => 'form',
-        '#attributes' => ['method' => 'post'],
-        'actions' => [
-          '#type' => 'actions',
-          'submit' => [
-            '#type' => 'submit',
-            '#value' => $this->t('Confirmer l\'annulation'),
-          ],
-          'back' => [
-            '#type' => 'link',
-            '#title' => $this->t('Retour'),
-            '#url' => Url::fromRoute('appointment.booking_manage'),
-            '#attributes' => ['class' => ['button']],
-          ],
-        ],
-      ],
-    ];
+    return $this->formBuilder()->getForm(AppointmentCancelForm::class , $appointment);
   }
 
 }

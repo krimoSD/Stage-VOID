@@ -11,6 +11,7 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Mail\MailManagerInterface;
 use Drupal\Core\Url;
 use Drupal\Component\Utility\Html;
+use Drupal\Core\TempStore\PrivateTempStoreFactory;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use DateTimeZone;
 
@@ -19,17 +20,26 @@ use DateTimeZone;
  */
 class AppointmentModifyForm extends FormBase {
 
+  /**
+   * Tempstore shared with AppointmentManagementController.
+   */
+  protected PrivateTempStoreFactory $tempStoreFactory;
+
   public function __construct(
     protected EntityTypeManagerInterface $entityTypeManager,
     protected ConfigFactoryInterface $systemConfigFactory,
     protected MailManagerInterface $mailManager,
-  ) {}
+    PrivateTempStoreFactory $temp_store_factory,
+  ) {
+    $this->tempStoreFactory = $temp_store_factory;
+  }
 
   public static function create(ContainerInterface $container): static {
     return new static(
       $container->get('entity_type.manager'),
       $container->get('config.factory'),
       $container->get('plugin.manager.mail'),
+      $container->get('tempstore.private'),
     );
   }
 
@@ -230,6 +240,12 @@ class AppointmentModifyForm extends FormBase {
   public function buildForm(array $form, FormStateInterface $form_state, ?AppointmentEntity $appointment = NULL): array {
     if (!$appointment) {
       $form['#markup'] = $this->t('Rendez-vous introuvable.');
+      return $form;
+    }
+
+    // Early security check.
+    if (!$this->canManageAppointment($appointment)) {
+      $form['#markup'] = $this->t('Accès refusé. Veuillez vérifier votre numéro de téléphone.');
       return $form;
     }
 
@@ -533,12 +549,49 @@ class AppointmentModifyForm extends FormBase {
     ];
   }
 
+  /**
+   * Re-check phone verification on submit.
+   *
+   * @see \Drupal\appointment\Controller\AppointmentManagementController::canManage()
+   */
+  protected function canManageAppointment(AppointmentEntity $appointment): bool {
+    // 1. Phone check.
+    if (!$appointment->hasField('customer_phone')) {
+      return FALSE;
+    }
+
+    $store = $this->tempStoreFactory->get('appointment_manage');
+    $verified_phone = trim((string) ($store->get('verified_phone') ?? ''));
+    if ($verified_phone === '') {
+      return FALSE;
+    }
+
+    $customer_phone = trim((string) ($appointment->get('customer_phone')->value ?? ''));
+    if ($customer_phone === '' || !hash_equals($verified_phone, $customer_phone)) {
+      return FALSE;
+    }
+
+    // 2. Strict ID whitelist check.
+    $allowed_ids = $store->get('allowed_appointment_ids');
+    if (!is_array($allowed_ids) || !in_array((int) $appointment->id(), array_map('intval', $allowed_ids), TRUE)) {
+      return FALSE;
+    }
+
+    return TRUE;
+  }
+
   public function submitForm(array &$form, FormStateInterface $form_state): void {
     $appointment_id = (int) $form_state->get('appointment_id');
     /** @var \Drupal\appointment\Entity\AppointmentEntity|null $appointment */
     $appointment = $this->entityTypeManager->getStorage('appointment')->load($appointment_id);
     if (!$appointment) {
       $this->messenger()->addError($this->t('Rendez-vous introuvable.'));
+      return;
+    }
+
+    if (!$this->canManageAppointment($appointment)) {
+      $this->messenger()->addError($this->t('Veuillez vérifier votre numéro de téléphone pour modifier ce rendez-vous.'));
+      $form_state->setRedirect('appointment.manage_lookup');
       return;
     }
 
@@ -599,6 +652,11 @@ class AppointmentModifyForm extends FormBase {
     $appointment->set('customer_phone', $phone);
     $appointment->save();
 
+    // Clear phone verification after successful update.
+    $store = $this->tempStoreFactory->get('appointment_manage');
+    $store->delete('verified_phone');
+    $store->delete('allowed_appointment_ids');
+
     // Send modification confirmation.
     $reference = $appointment->hasField('reference') ? ($appointment->get('reference')->value ?: $appointment->id()) : $appointment->id();
     $site_mail = $this->systemConfigFactory->get('system.site')->get('mail');
@@ -611,4 +669,3 @@ class AppointmentModifyForm extends FormBase {
   }
 
 }
-

@@ -61,6 +61,7 @@ appointment.manage_modify:
     _title: 'Modifier le rendez-vous'
   requirements:
     _entity_access: 'appointment.update'
+    appointment: '\d+'
 
 appointment.manage_cancel:
   path: '/annuler-un-rendez-vous/{appointment}'
@@ -69,6 +70,7 @@ appointment.manage_cancel:
     _title: 'Annuler le rendez-vous'
   requirements:
     _entity_access: 'appointment.delete'
+    appointment: '\d+'
 
 appointment.fullcalendar_events:
   path: '/appointment/fullcalendar/events/{adviser}'

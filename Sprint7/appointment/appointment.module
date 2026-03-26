@@ -1,11 +1,5 @@
 <?php
 
-/**
- * Implements hook_entity_type_build().
- * Already handled by the annotation above, but you
- * can add alter hooks here if needed.
- */
-
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Entity\EntityInterface;
 

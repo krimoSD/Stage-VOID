@@ -36,9 +36,11 @@ use Drupal\Core\Field\BaseFieldDefinition;
  *   },
  * )
  */
-class AppointmentEntity extends ContentEntityBase {
+class AppointmentEntity extends ContentEntityBase
+{
 
-  public static function baseFieldDefinitions(EntityTypeInterface $entity_type): array {
+  public static function baseFieldDefinitions(EntityTypeInterface $entity_type): array
+  {
     $fields = parent::baseFieldDefinitions($entity_type);
 
     // Title
@@ -60,9 +62,9 @@ class AppointmentEntity extends ContentEntityBase {
       ->setLabel(t('Agency'))
       ->setRequired(TRUE)
       ->setSettings([
-        'target_type' => 'agency',   // must match id = "agency" in AgencyEntity annotation
-        'handler' => 'default',
-      ])
+      'target_type' => 'agency', // must match id = "agency" in AgencyEntity annotation
+      'handler' => 'default',
+    ])
       ->setDisplayOptions('form', ['type' => 'entity_reference_autocomplete', 'weight' => 2]);
 
     // Appointment type (taxonomy term).
@@ -70,14 +72,14 @@ class AppointmentEntity extends ContentEntityBase {
       ->setLabel(t('Appointment type'))
       ->setRequired(TRUE)
       ->setSettings([
-        'target_type' => 'taxonomy_term',
-        'handler' => 'default',
-        'handler_settings' => [
-          'target_bundles' => [
-            'appointment_type' => 'appointment_type',
-          ],
+      'target_type' => 'taxonomy_term',
+      'handler' => 'default',
+      'handler_settings' => [
+        'target_bundles' => [
+          'appointment_type' => 'appointment_type',
         ],
-      ])
+      ],
+    ])
       ->setDisplayOptions('form', ['type' => 'options_select', 'weight' => 3]);
 
     // Adviser reference (entity reference to User with adviser role).
@@ -85,10 +87,10 @@ class AppointmentEntity extends ContentEntityBase {
       ->setLabel(t('Adviser'))
       ->setRequired(TRUE)
       ->setSettings([
-        'target_type' => 'user',
-        'handler' => 'default:user',
-        'handler_settings' => ['filter' => ['role' => 'adviser']],
-      ])
+      'target_type' => 'user',
+      'handler' => 'default:user',
+      'handler_settings' => ['filter' => ['role' => 'adviser']],
+    ])
       ->setDisplayOptions('form', ['type' => 'entity_reference_autocomplete', 'weight' => 4]);
 
     // Customer Name
@@ -130,12 +132,12 @@ class AppointmentEntity extends ContentEntityBase {
       ->setLabel(t('Status'))
       ->setRequired(TRUE)
       ->setSettings([
-        'allowed_values' => [
-          'pending'   => t('Pending'),
-          'confirmed' => t('Confirmed'),
-          'cancelled' => t('Cancelled'),
-        ],
-      ])
+      'allowed_values' => [
+        'pending' => t('Pending'),
+        'confirmed' => t('Confirmed'),
+        'cancelled' => t('Cancelled'),
+      ],
+    ])
       ->setDefaultValue('pending')
       ->setDisplayOptions('form', ['type' => 'options_select', 'weight' => 7]);
 

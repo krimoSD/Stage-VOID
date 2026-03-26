@@ -21,7 +21,7 @@ use Drupal\Core\Field\BaseFieldDefinition;
  *     "label" = "name",
  *   },
  *   handlers = {
- *     "list_builder" = "Drupal\Core\Entity\EntityListBuilder",
+ *     "list_builder" = "Drupal\appointment\Entity\AgencyListBuilder",
  *     "route_provider" = {
  *       "html" = "Drupal\Core\Entity\Routing\AdminHtmlRouteProvider",
  *     },
@@ -40,9 +40,11 @@ use Drupal\Core\Field\BaseFieldDefinition;
  *   },
  * )
  */
-class AgencyEntity extends ContentEntityBase {
+class AgencyEntity extends ContentEntityBase
+{
 
-  public static function baseFieldDefinitions(EntityTypeInterface $entity_type): array {
+  public static function baseFieldDefinitions(EntityTypeInterface $entity_type): array
+  {
     $fields = parent::baseFieldDefinitions($entity_type);
 
     // Name

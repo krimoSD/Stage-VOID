@@ -184,7 +184,7 @@ class BookingForm extends FormBase {
     foreach ($terms as $term) {
       $options[$term->tid] = $term->name;
     }
-  
+
     return [
       'appointment_type' => [
         '#type' => 'select',
@@ -203,7 +203,7 @@ class BookingForm extends FormBase {
     $agency = $store->get('agency');
     $type = $store->get('appointment_type');
     $advisers = $this->getAdvisersByAgencyAndType($agency, $type);
-  
+
     return [
       'adviser' => [
         '#type' => 'select',
@@ -225,7 +225,7 @@ class BookingForm extends FormBase {
     $stored_date = $store->get('date');
     $stored_time = $store->get('time');
     $current_date = $form_state->getValue(['steps_wrapper', 'date']) ?: $stored_date;
-  
+
     return [
       'calendar' => [
         '#type' => 'container',
@@ -535,8 +535,7 @@ class BookingForm extends FormBase {
   /**
    * {@inheritdoc}
    *
-   * For now this just shows a confirmation message. In a later step we can
-   * create an Appointment entity from the collected values.
+   * Submission and creation of the appointment entity
    */
   public function submitForm(array &$form, FormStateInterface $form_state): void {
     $store = $this->tempStoreFactory->get('appointment_booking');

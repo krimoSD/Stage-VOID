@@ -27,6 +27,10 @@ class AppointmentAccessControlHandler extends EntityAccessControlHandler {
         return AccessResult::allowedIfHasPermission($account, 'access content');
 
       case 'update':
+        if ($account->hasPermission('administer appointments')) {
+          return AccessResult::allowed();
+        }
+        return AccessResult::allowedIf($is_owner)->cachePerPermissions()->cachePerUser();
       case 'delete':
         if ($account->hasPermission('administer appointments')) {
           return AccessResult::allowed();

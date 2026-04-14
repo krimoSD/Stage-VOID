@@ -1,0 +1,46 @@
+{{ attach_library('custom_dynamic_fields/ca_header_tailwind') }}
+
+{% set image_uri = (content.0.image.0 is defined) ? get_image(content.0.image.0) : '' %}
+{% set slide_image = image_uri is not empty ? file_url(image_uri) : 'https://via.placeholder.com/600x400/2b84e8/fff' %}
+
+{% set title = extra_fields.title is defined ? extra_fields.title : content.0.title ?? '' %}
+{% set description = extra_fields.description is defined ? extra_fields.description : content.0.description ?? '' %}
+{% set button_label = extra_fields.button_label is defined ? extra_fields.button_label : content.0.button_label ?? '' %}
+{% set button_url = extra_fields.button_url is defined ? extra_fields.button_url : content.0.button_url ?? '#' %}
+
+<section style="width: 100vw; margin-left: calc(50% - 50vw); margin-right: calc(50% - 50vw); background-color: #2b84e8; margin-top: 0; padding-top: 0;">
+  <div class="mx-auto flex max-w-[1280px] flex-col overflow-hidden lg:h-[600px] lg:flex-row">
+    
+    <!-- Left Column: Image -->
+    <div class="relative w-full lg:w-1/2 shrink-0 h-64 lg:h-full flex items-center justify-center p-8 lg:p-0">
+      {% if slide_image is not empty %}
+        <img src="{{ slide_image }}" alt="{{ title|striptags }}" class="h-full w-full object-contain drop-shadow-2xl max-h-[90%] lg:scale-110" loading="lazy">
+      {% endif %}
+    </div>
+
+    <!-- Right Column: Content -->
+    <div class="flex w-full flex-col justify-center px-6 py-16 text-white sm:px-12 lg:w-1/2 lg:px-20 lg:py-0">
+      <div class="mb-8 flex flex-col sm:flex-row items-start lg:items-center gap-4">
+        <span class="block h-[2px] w-12 bg-white shrink-0 mt-3 sm:mt-0"></span>
+        {% if title is not empty %}
+          <h2 class="m-0 text-3xl font-bold uppercase leading-tight tracking-tight sm:text-4xl">{{ title }}</h2>
+        {% endif %}
+      </div>
+
+      {% if description is not empty %}
+        <div class="space-y-4 text-[15px] font-medium leading-[1.6] text-white/90">
+          {{ description|nl2br }}
+        </div>
+      {% endif %}
+
+      {% if button_label is not empty %}
+        <div class="mt-12">
+          <a href="{{ button_url }}" class="inline-flex items-center justify-center rounded bg-white px-8 py-4 text-[13px] font-bold uppercase tracking-wider text-[#2b84e8] transition-all hover:bg-slate-100 shadow-md">
+            {{ button_label }}
+          </a>
+        </div>
+      {% endif %}
+    </div>
+
+  </div>
+</section>

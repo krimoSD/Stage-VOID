@@ -1,0 +1,55 @@
+name: 'CA Header'
+multiple: FALSE
+category: 'Capital Azur'
+enabled: TRUE
+fields:
+  logo_text:
+    type: text
+    label: "Logo text"
+    options:
+      '#default_value': 'CAPITAL AZUR'
+  logo_subtitle:
+    type: text
+    label: "Logo subtitle"
+    options:
+      '#default_value': 'VOTRE INVESTISSEUR AVANT-GARDE'
+  menu_1_label:
+    type: text
+    label: "Menu 1 label"
+    options:
+      '#default_value': 'PRODUITS & SERVICES'
+  menu_1_url:
+    type: text
+    label: "Menu 1 URL"
+    options:
+      '#default_value': '/accordion'
+  menu_2_label:
+    type: text
+    label: "Menu 2 label"
+    options:
+      '#default_value': 'NOUS CONNAITRE'
+  menu_2_url:
+    type: text
+    label: "Menu 2 URL"
+    options:
+      '#default_value': '#'
+  menu_3_label:
+    type: text
+    label: "Menu 3 label"
+    options:
+      '#default_value': 'INSIGHTS'
+  menu_3_url:
+    type: text
+    label: "Menu 3 URL"
+    options:
+      '#default_value': '#'
+  cta_label:
+    type: text
+    label: "CTA label"
+    options:
+      '#default_value': 'BANQUE DIGITALE'
+  cta_url:
+    type: text
+    label: "CTA URL"
+    options:
+      '#default_value': '#'

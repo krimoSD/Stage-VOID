@@ -1,0 +1,50 @@
+name: 'CA Slider'
+multiple: TRUE
+category: 'Capital Azur'
+enabled: TRUE
+limit: 6
+fields:
+  image:
+    type: image
+    label: "Background image"
+    options:
+      '#required': TRUE
+  title:
+    type: text
+    label: "Title"
+    options:
+      '#required': TRUE
+  description:
+    type: textarea
+    label: "Description"
+    options:
+      '#required': TRUE
+extra_fields:
+  weight: 999
+  group_gonfig:
+    g_title: 'Slider Configuration'
+    arrows:
+      type: checkbox
+      label: 'Show arrows'
+      options:
+        '#checked': TRUE
+    dots:
+      type: checkbox
+      label: 'Show dots'
+      options:
+        '#checked': FALSE
+    loop:
+      type: checkbox
+      label: 'Infinite loop'
+      options:
+        '#checked': TRUE
+    autoLoop:
+      type: checkbox
+      label: 'Auto slide'
+      options:
+        '#checked': TRUE
+    loopSpeed:
+      type: number
+      label: 'Auto slide speed (ms)'
+      options:
+        '#default_value': 5000

@@ -1,0 +1,178 @@
+{{ attach_library('custom_dynamic_fields/ca_header_tailwind') }}
+{{ attach_library('custom_dynamic_fields/ca_accordion_behavior') }}
+
+<section class="w-full py-8">
+  <div class="mx-auto max-w-[1280px] px-4 lg:px-8">
+    <div class="js-ca-accordion space-y-3">
+
+      {# Item 1 — open #}
+      <div class="js-ca-accordion-item rounded-lg border border-gray-200 bg-white shadow-sm overflow-hidden" data-open="true">
+        <button type="button"
+                class="js-ca-accordion-trigger flex w-full items-center justify-between px-6 py-5 text-left focus:outline-none"
+                aria-expanded="true">
+          <span class="text-base font-bold text-[#0a1936] js-ca-accordion-label">Comptes et cartes</span>
+          <span class="js-ca-accordion-icon-plus text-gray-400 hidden" aria-hidden="true">
+            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none">
+              <path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </span>
+          <span class="js-ca-accordion-icon-minus text-[#2b84e8]" aria-hidden="true">
+            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none">
+              <path d="M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </span>
+        </button>
+        <div class="js-ca-accordion-body border-t border-gray-100">
+          <div class="flex flex-col sm:flex-row gap-6 p-6">
+            <div class="shrink-0 w-full sm:w-[260px] lg:w-[300px] rounded-md overflow-hidden bg-[#f5ddd8] flex items-center justify-center">
+              <img src="https://via.placeholder.com/300x200/f5ddd8/333?text=Image" alt="Comptes et cartes" class="h-full w-full object-cover max-h-[200px] sm:max-h-none" loading="lazy">
+            </div>
+            <div class="flex flex-col justify-center gap-4">
+              <div class="text-[15px] leading-relaxed text-gray-600 space-y-3">
+                <p>Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+              </div>
+              <div class="mt-2">
+                <a href="#" class="inline-flex items-center gap-3 text-[13px] font-bold uppercase tracking-wider text-[#2b84e8] hover:text-[#0b5fb3] transition-colors">
+                  <span class="block h-[2px] w-8 bg-[#2b84e8]"></span>
+                  EN SAVOIR PLUS
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {# Item 2 — closed #}
+      <div class="js-ca-accordion-item rounded-lg border border-gray-200 bg-white shadow-sm overflow-hidden" data-open="false">
+        <button type="button" class="js-ca-accordion-trigger flex w-full items-center justify-between px-6 py-5 text-left focus:outline-none" aria-expanded="false">
+          <span class="text-base font-bold text-[#0a1936] js-ca-accordion-label">Epargne</span>
+          <span class="js-ca-accordion-icon-plus text-gray-400" aria-hidden="true">
+            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none">
+              <path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </span>
+          <span class="js-ca-accordion-icon-minus text-[#2b84e8] hidden" aria-hidden="true">
+            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none">
+              <path d="M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </span>
+        </button>
+        <div class="js-ca-accordion-body hidden border-t border-gray-100">
+          <div class="flex flex-col sm:flex-row gap-6 p-6">
+            <div class="flex flex-col justify-center gap-4">
+              <div class="text-[15px] leading-relaxed text-gray-600 space-y-3">
+                <p>Contenu Epargne.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {# Item 3 — closed #}
+      <div class="js-ca-accordion-item rounded-lg border border-gray-200 bg-white shadow-sm overflow-hidden" data-open="false">
+        <button type="button" class="js-ca-accordion-trigger flex w-full items-center justify-between px-6 py-5 text-left focus:outline-none" aria-expanded="false">
+          <span class="text-base font-bold text-[#0a1936] js-ca-accordion-label">Credit</span>
+          <span class="js-ca-accordion-icon-plus text-gray-400" aria-hidden="true">
+            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none">
+              <path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </span>
+          <span class="js-ca-accordion-icon-minus text-[#2b84e8] hidden" aria-hidden="true">
+            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none">
+              <path d="M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </span>
+        </button>
+        <div class="js-ca-accordion-body hidden border-t border-gray-100">
+          <div class="flex flex-col sm:flex-row gap-6 p-6">
+            <div class="flex flex-col justify-center gap-4">
+              <div class="text-[15px] leading-relaxed text-gray-600 space-y-3">
+                <p>Contenu Credit.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {# Item 4 — closed #}
+      <div class="js-ca-accordion-item rounded-lg border border-gray-200 bg-white shadow-sm overflow-hidden" data-open="false">
+        <button type="button" class="js-ca-accordion-trigger flex w-full items-center justify-between px-6 py-5 text-left focus:outline-none" aria-expanded="false">
+          <span class="text-base font-bold text-[#0a1936] js-ca-accordion-label">Assurance</span>
+          <span class="js-ca-accordion-icon-plus text-gray-400" aria-hidden="true">
+            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none">
+              <path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </span>
+          <span class="js-ca-accordion-icon-minus text-[#2b84e8] hidden" aria-hidden="true">
+            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none">
+              <path d="M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </span>
+        </button>
+        <div class="js-ca-accordion-body hidden border-t border-gray-100">
+          <div class="flex flex-col sm:flex-row gap-6 p-6">
+            <div class="flex flex-col justify-center gap-4">
+              <div class="text-[15px] leading-relaxed text-gray-600 space-y-3">
+                <p>Contenu Assurance.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {# Item 5 — closed #}
+      <div class="js-ca-accordion-item rounded-lg border border-gray-200 bg-white shadow-sm overflow-hidden" data-open="false">
+        <button type="button" class="js-ca-accordion-trigger flex w-full items-center justify-between px-6 py-5 text-left focus:outline-none" aria-expanded="false">
+          <span class="text-base font-bold text-[#0a1936] js-ca-accordion-label">Bourse</span>
+          <span class="js-ca-accordion-icon-plus text-gray-400" aria-hidden="true">
+            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none">
+              <path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </span>
+          <span class="js-ca-accordion-icon-minus text-[#2b84e8] hidden" aria-hidden="true">
+            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none">
+              <path d="M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </span>
+        </button>
+        <div class="js-ca-accordion-body hidden border-t border-gray-100">
+          <div class="flex flex-col sm:flex-row gap-6 p-6">
+            <div class="flex flex-col justify-center gap-4">
+              <div class="text-[15px] leading-relaxed text-gray-600 space-y-3">
+                <p>Contenu Bourse.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {# Item 6 — closed #}
+      <div class="js-ca-accordion-item rounded-lg border border-gray-200 bg-white shadow-sm overflow-hidden" data-open="false">
+        <button type="button" class="js-ca-accordion-trigger flex w-full items-center justify-between px-6 py-5 text-left focus:outline-none" aria-expanded="false">
+          <span class="text-base font-bold text-[#0a1936] js-ca-accordion-label">Asset Management</span>
+          <span class="js-ca-accordion-icon-plus text-gray-400" aria-hidden="true">
+            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none">
+              <path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </span>
+          <span class="js-ca-accordion-icon-minus text-[#2b84e8] hidden" aria-hidden="true">
+            <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none">
+              <path d="M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </span>
+        </button>
+        <div class="js-ca-accordion-body hidden border-t border-gray-100">
+          <div class="flex flex-col sm:flex-row gap-6 p-6">
+            <div class="flex flex-col justify-center gap-4">
+              <div class="text-[15px] leading-relaxed text-gray-600 space-y-3">
+                <p>Contenu Asset Management.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>

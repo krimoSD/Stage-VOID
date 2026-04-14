@@ -1,0 +1,35 @@
+name: 'CA Accordion'
+multiple: TRUE
+category: 'Capital Azur'
+enabled: TRUE
+limit: 20
+fields:
+  title:
+    type: text
+    label: "Accordion Item Title"
+    options:
+      '#required': TRUE
+      '#default_value': 'Comptes et cartes'
+  image:
+    type: image
+    label: "Content Image"
+    options:
+      '#required': FALSE
+  description:
+    type: textarea
+    label: "Content Description"
+    options:
+      '#required': FALSE
+      '#default_value': "Consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.\n\nUt enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+  button_label:
+    type: text
+    label: "Button Label"
+    options:
+      '#required': FALSE
+      '#default_value': 'EN SAVOIR PLUS'
+  button_url:
+    type: text
+    label: "Button URL"
+    options:
+      '#required': FALSE
+      '#default_value': '#'

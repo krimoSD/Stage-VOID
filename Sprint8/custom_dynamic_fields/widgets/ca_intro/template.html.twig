@@ -1,0 +1,33 @@
+{{ attach_library('custom_dynamic_fields/ca_header_tailwind') }}
+
+{% set title = extra_fields.title is defined ? extra_fields.title : content.0.title ?? '' %}
+{% set description = extra_fields.description is defined ? extra_fields.description : content.0.description ?? '' %}
+{% set button_label = extra_fields.button_label is defined ? extra_fields.button_label : content.0.button_label ?? '' %}
+{% set button_url = extra_fields.button_url is defined ? extra_fields.button_url : content.0.button_url ?? '#' %}
+
+<section class="w-full bg-[#fcfcfc] py-20 lg:py-28">
+  <div class="mx-auto max-w-[1024px] px-6 text-center lg:px-8">
+    <div class="mb-10 flex flex-col items-center">
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <span class="block h-[2px] w-12 bg-[#007bff]"></span>
+        {% if title is not empty %}
+          <h2 class="m-0 text-[32px] font-bold tracking-tight text-[#000000] uppercase md:text-[40px]">{{ title }}</h2>
+        {% endif %}
+      </div>
+    </div>
+    
+    {% if description is not empty %}
+      <div class="mx-auto max-w-[850px] space-y-4 text-base font-medium leading-[1.7] text-[#4b5563] md:text-lg">
+        {{ description|nl2br }}
+      </div>
+    {% endif %}
+
+    {% if button_label is not empty %}
+      <div class="mt-12 flex justify-center">
+        <a href="{{ button_url }}" class="inline-flex items-center justify-center rounded bg-[#007bff] px-8 py-4 text-[13px] font-bold uppercase tracking-wider text-white transition-all hover:bg-[#0056b3]">
+          {{ button_label }}
+        </a>
+      </div>
+    {% endif %}
+  </div>
+</section>

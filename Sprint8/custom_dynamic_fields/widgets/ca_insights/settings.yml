@@ -1,0 +1,57 @@
+name: 'CA Insights'
+multiple: TRUE
+category: 'Capital Azur'
+enabled: TRUE
+limit: 9
+fields:
+  image:
+    type: image
+    label: "Thumbnail Image"
+    options:
+      '#required': TRUE
+  category_name:
+    type: text
+    label: "Category label (e.g. ACTUALITÉ)"
+    options:
+      '#required': TRUE
+  date:
+    type: text
+    label: "Date (e.g. 15/01/18)"
+    options:
+      '#required': TRUE
+  title:
+    type: text
+    label: "Article Title"
+    options:
+      '#required': TRUE
+  link_url:
+    type: text
+    label: "Link URL"
+    options:
+      '#required': TRUE
+extra_fields:
+  weight: 999
+  group_header:
+    g_title: 'Header Configuration'
+    section_title:
+      type: text
+      label: 'Section Title'
+      options:
+        '#default_value': 'INSIGHTS'
+    section_subtitle:
+      type: text
+      label: 'Section Subtitle'
+      options:
+        '#default_value': 'Découvrez nos actualités, nos analyses et les points de vue de nos experts'
+  group_footer:
+    g_title: 'Footer Configuration'
+    button_label:
+      type: text
+      label: 'Button Label'
+      options:
+        '#default_value': 'VOIR TOUS LES INSIGHTS'
+    button_url:
+      type: text
+      label: 'Button URL'
+      options:
+        '#default_value': '#'

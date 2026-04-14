@@ -1,0 +1,9 @@
+name: 'Capital Azur'
+description: 'Capital Azur custom dynamic field widgets.'
+type: module
+core_version_requirement: ^9 || ^10
+package: Capital Azur
+dependencies:
+  - vactory_starter_kit:vactory_dynamic_field
+  - vactory_starter_kit:vactory_header
+  - vactory_starter_kit:vactory_footer

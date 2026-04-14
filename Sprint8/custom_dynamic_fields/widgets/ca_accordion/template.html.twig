@@ -1,0 +1,77 @@
+{{ attach_library('custom_dynamic_fields/ca_header_tailwind') }}
+{{ attach_library('custom_dynamic_fields/ca_accordion_behavior') }}
+
+<section class="w-full py-8">
+  <div class="mx-auto max-w-[1280px] px-4 lg:px-8">
+    <div class="js-ca-accordion space-y-3">
+
+      {% for item in content %}
+        {% set image_uri = (item.image.0 is defined) ? get_image(item.image.0) : '' %}
+        {% set image_src = image_uri is not empty ? file_url(image_uri) : '' %}
+        {% set title = item.title ?? '' %}
+        {% set description = item.description ?? '' %}
+        {% set button_label = item.button_label is not empty ? item.button_label : 'EN SAVOIR PLUS' %}
+        {% set button_url = item.button_url is not empty ? item.button_url : '#' %}
+        {% set is_first = loop.first %}
+
+        <div class="js-ca-accordion-item rounded-lg border border-gray-200 bg-white shadow-sm overflow-hidden"
+             data-open="{{ is_first ? 'true' : 'false' }}">
+
+          {# ── Header / Toggle ── #}
+          <button type="button"
+                  class="js-ca-accordion-trigger flex w-full items-center justify-between px-6 py-5 text-left focus:outline-none"
+                  aria-expanded="{{ is_first ? 'true' : 'false' }}">
+            <span class="text-base font-bold text-[#0a1936] js-ca-accordion-label">{{ title }}</span>
+            {# Plus icon (collapsed) #}
+            <span class="js-ca-accordion-icon-plus text-gray-400 transition-opacity duration-200 {{ is_first ? 'hidden' : '' }}" aria-hidden="true">
+              <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none">
+                <path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </span>
+            {# Minus icon (expanded) #}
+            <span class="js-ca-accordion-icon-minus text-[#2b84e8] transition-opacity duration-200 {{ is_first ? '' : 'hidden' }}" aria-hidden="true">
+              <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none">
+                <path d="M5 12h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </span>
+          </button>
+
+          {# ── Body / Content ── #}
+          <div class="js-ca-accordion-body {{ is_first ? '' : 'hidden' }} border-t border-gray-100">
+            <div class="flex flex-col sm:flex-row gap-6 p-6">
+
+              {# Image #}
+              {% if image_src is not empty %}
+                <div class="shrink-0 w-full sm:w-[260px] lg:w-[300px] rounded-md overflow-hidden bg-gray-50 flex items-center justify-center">
+                  <img src="{{ image_src }}" alt="{{ title|striptags }}" class="h-full w-full object-cover max-h-[200px] sm:max-h-none" loading="lazy">
+                </div>
+              {% endif %}
+
+              {# Text content #}
+              <div class="flex flex-col justify-center gap-4">
+                {% if description is not empty %}
+                  <div class="text-[15px] leading-relaxed text-gray-600 space-y-3">
+                    {{ description|nl2br }}
+                  </div>
+                {% endif %}
+
+                {% if button_label is not empty %}
+                  <div class="mt-2">
+                    <a href="{{ button_url }}"
+                       class="inline-flex items-center gap-3 text-[13px] font-bold uppercase tracking-wider text-[#2b84e8] hover:text-[#0b5fb3] transition-colors">
+                      <span class="block h-[2px] w-8 bg-[#2b84e8]"></span>
+                      {{ button_label }}
+                    </a>
+                  </div>
+                {% endif %}
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      {% endfor %}
+
+    </div>
+  </div>
+</section>

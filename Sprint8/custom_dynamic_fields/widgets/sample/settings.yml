@@ -1,0 +1,13 @@
+name: 'Sample'
+multiple: FALSE
+category: 'Custom Dynamic Fields'
+enabled: TRUE
+fields:
+  title:
+    type: text
+    label: "Titre"
+  description:
+    type: text_format
+    label: 'Description'
+    options:
+      '#format': 'basic_html'

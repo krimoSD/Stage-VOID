@@ -1,0 +1,43 @@
+{% set logo_text = content.logo_text|default('CAPITAL AZUR') %}
+{% set logo_subtitle = content.logo_subtitle|default('VOTRE INVESTISSEUR AVANT-GARDE') %}
+{% set menu_1_label = content.menu_1_label|default('PRODUITS & SERVICES') %}
+{% set menu_1_url = content.menu_1_url|default('#') %}
+{% set menu_2_label = content.menu_2_label|default('NOUS CONNAITRE') %}
+{% set menu_2_url = content.menu_2_url|default('#') %}
+{% set menu_3_label = content.menu_3_label|default('INSIGHTS') %}
+{% set menu_3_url = content.menu_3_url|default('#') %}
+{% set cta_label = content.cta_label|default('BANQUE DIGITALE') %}
+{% set cta_url = content.cta_url|default('#') %}
+
+{{ attach_library('custom_dynamic_fields/ca_header_tailwind') }}
+
+<header class="border-b border-slate-200 bg-white">
+  <div class="mx-auto flex h-[72px] w-full max-w-[1280px] items-center justify-between px-4 sm:px-6 lg:px-10">
+    <a href="/" class="inline-flex items-center gap-2 no-underline">
+      <span class="inline-flex h-7 w-7 items-center justify-center rounded-sm bg-[#0b5fb3] text-white">
+        <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M12 3 4 8l8 5 8-5-8-5Zm-8 8 8 5 8-5" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </span>
+      <span class="leading-none">
+        <span class="block text-[18px] font-semibold tracking-[0.02em] text-slate-900">{{ logo_text }}</span>
+        <span class="mt-[2px] block text-[8px] font-semibold uppercase tracking-[0.22em] text-slate-500">{{ logo_subtitle }}</span>
+      </span>
+    </a>
+
+    <div class="flex items-center gap-[18px] text-[12px] font-semibold uppercase tracking-[0.08em] text-slate-800">
+      <a href="/accordion" class="text-slate-800 no-underline transition-colors hover:text-[#0b5fb3]">{{ menu_1_label }}</a>
+      <span class="h-4 w-px bg-slate-300"></span>
+      <a href="{{ menu_2_url }}" class="text-[#0b5fb3] no-underline">{{ menu_2_label }}</a>
+      <span class="h-4 w-px bg-slate-300"></span>
+      <a href="{{ menu_3_url }}" class="text-slate-800 no-underline transition-colors hover:text-[#0b5fb3]">{{ menu_3_label }}</a>
+
+      <a href="{{ cta_url }}" class="ml-2 inline-flex items-center gap-2 rounded-md bg-[#0b3b8f] px-[18px] py-[12px] text-[12px] font-bold uppercase tracking-[0.08em] text-white no-underline shadow-sm transition hover:bg-[#082e70] hover:text-white">
+        <span>{{ cta_label }}</span>
+        <svg class="h-[14px] w-[14px]" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M7 10V8a5 5 0 0 1 10 0v2m-9 0h8a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H8a1 1 0 0 1-1-1v-8a1 1 0 0 1 1-1Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</header>
